@@ -1,0 +1,226 @@
+---
+const features = [
+  {
+    icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+    title: 'IA aplicada',
+    text: 'Entrenamiento, fine-tuning, RAG, agentes y multimodalidad para crear soluciones reales.',
+  },
+  {
+    icon: 'M22 10v6M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5',
+    title: 'Educación con propósito',
+    text: 'Cada prototipo busca transformar la forma en que estudiamos, enseñamos y aprendemos.',
+  },
+  {
+    icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
+    title: 'Mentoría top-tier',
+    text: 'Mentores de la industria y la academia te acompañan durante los tres días intensivos.',
+  },
+  {
+    icon: 'M12 2v4 M12 18v4 M4.93 4.93l2.83 2.83 M16.24 16.24l2.83 2.83 M2 12h4 M18 12h4 M4.93 19.07l2.83-2.83 M16.24 7.76l2.83-2.83',
+    title: 'Premios reales',
+    text: 'Reconocimiento, conexión con incubadoras y oportunidades para escalar el prototipo.',
+  },
+];
+---
+
+<section id="about" class="section about">
+  <div class="container">
+    <div class="about-head" data-reveal>
+      <span class="section-tag">Sobre el evento</span>
+      <h2 class="section-title">
+        El primer hackathon universitario presencial de Arequipa
+        <span class="gradient-text">100% enfocado en IA</span>
+        para transformar la educación.
+      </h2>
+      <p class="section-subtitle">
+        Tres días intensivos en los que <strong>50 estudiantes seleccionados</strong> de las
+        principales universidades de la región se organizan en <strong>10 equipos
+        interdisciplinarios</strong> para construir prototipos funcionales con impacto educativo real.
+        Mentoría, charlas magistrales con ponentes internacionales y el ecosistema emprendedor
+        nacional, todo en un mismo lugar.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-image" data-reveal>
+        <div class="image-frame">
+          <div class="image-overlay" aria-hidden="true"></div>
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80"
+            alt="Estudiantes colaborando en un hackathon presencial"
+            loading="lazy"
+          />
+          <div class="image-badge mono">29 — 31 · MAY · 2026</div>
+        </div>
+        <div class="image-stripe">
+          <span>NEXIA · ARGS:</span>
+          <span class="stripe-tag">--ai</span>
+          <span class="stripe-tag">--education</span>
+          <span class="stripe-tag">--arequipa</span>
+        </div>
+      </div>
+
+      <ul class="features">
+        {features.map((f, i) => (
+          <li class="feature glass" data-reveal style={`transition-delay: ${i * 100}ms`}>
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d={f.icon} />
+              </svg>
+            </div>
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-head {
+    max-width: 880px;
+    margin-bottom: 48px;
+  }
+
+  .about-head .section-subtitle {
+    max-width: 780px;
+  }
+
+  .about-head strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .about-image {
+    position: relative;
+  }
+
+  .image-frame {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border);
+    aspect-ratio: 4 / 3;
+  }
+
+  .image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+
+  .image-frame:hover img {
+    transform: scale(1.05);
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--primary) 40%, transparent) 0%,
+      transparent 35%,
+      color-mix(in srgb, var(--accent) 25%, transparent) 100%
+    );
+    mix-blend-mode: overlay;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .image-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    padding: 8px 14px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+    color: var(--primary);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+  }
+
+  .image-stripe {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .stripe-tag {
+    padding: 4px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--primary);
+  }
+
+  .features {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .feature {
+    padding: 28px 24px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  }
+
+  .feature:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--grad-soft);
+    color: var(--primary);
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+
+  .feature h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .feature p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 980px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .features { grid-template-columns: 1fr; }
+  }
+</style>

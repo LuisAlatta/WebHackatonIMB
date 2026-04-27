@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-label="IMB Institute">
+  <defs>
+    <linearGradient id="imbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#00e5ff"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <!-- Monogram block -->
+    <rect x="2" y="14" width="68" height="68" rx="14" fill="url(#imbg)"/>
+    <text x="36" y="60" text-anchor="middle" font-family="'Space Grotesk','Inter',sans-serif" font-weight="800" font-size="28" fill="#ffffff" letter-spacing="-0.5">IMB</text>
+    <!-- Wordmark -->
+    <text x="86" y="50" font-family="'Space Grotesk','Inter',sans-serif" font-weight="800" font-size="34" fill="#ffffff" letter-spacing="-0.5">IMB</text>
+    <text x="86" y="76" font-family="'Inter',sans-serif" font-weight="500" font-size="14" letter-spacing="3" fill="#9aa3c7">INSTITUTE</text>
+  </g>
+</svg>

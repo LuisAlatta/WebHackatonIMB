@@ -1,0 +1,290 @@
+---
+const orgs = [
+  {
+    role: 'Organizador principal',
+    name: 'IMB Institute',
+    logo: '/logos/imb%20icon.jpg',
+    desc: 'Hub de formación y aceleración tecnológica que impulsa el talento universitario peruano hacia el ecosistema global de IA.',
+    cta: 'imb.pe',
+  },
+  {
+    role: 'Coorganizador',
+    name: 'GDG Arequipa',
+    logo: '/logos/gdg%20icon.png',
+    desc: 'Comunidad oficial de Google Developers en Arequipa, conectando a miles de desarrolladores con tecnología de Google.',
+    cta: 'gdg.community.dev',
+  },
+  {
+    role: 'Aliado Estratégico y Coorganizador',
+    name: 'ISUR',
+    logo: '/logos/isur%20icon.png',
+    desc: 'Instituto Superior Universitario de Arequipa: aliado estratégico y coorganizador, sede del auditorio y referente de innovación regional.',
+    cta: 'isur.edu.pe',
+  },
+];
+
+const partners = [
+  { name: 'IMB Institute', logo: '/logos/imb%20icon.jpg' },
+  { name: 'GDG Arequipa', logo: '/logos/gdg%20icon.png' },
+  { name: 'ISUR', logo: '/logos/isur%20icon.png' },
+  { name: 'IEEE', logo: '/logos/ieee%20icon.png', tba: true },
+  { name: 'Marca Peruana S.A.C.', logo: '/logos/marca%20peruana%20icon.png' },
+  { name: 'Kaman Incubadora UCSP', logo: '/logos/kaman%20icon.jpg' },
+];
+---
+
+<section id="sponsors" class="section sponsors">
+  <div class="container">
+    <div class="sponsors-head" data-reveal>
+      <span class="section-tag">Aliados estratégicos</span>
+      <h2 class="section-title">
+        Construido por <span class="gradient-text">la comunidad tech</span> de Arequipa
+      </h2>
+      <p class="section-subtitle">
+        IMB Institute lidera el evento en alianza con GDG Arequipa e instituciones académicas,
+        incubadoras y aliados estratégicos del ecosistema emprendedor nacional e internacional.
+      </p>
+    </div>
+
+    <div class="orgs-grid">
+      {orgs.map((o, i) => (
+        <article class="org glass" data-reveal style={`transition-delay: ${i * 120}ms`}>
+          <span class="org-role mono">{o.role}</span>
+          <div class="org-logo-wrap">
+            <div class="org-logo-frame">
+              <img src={o.logo} alt={`Logo ${o.name}`} class="org-logo" loading="lazy" />
+            </div>
+          </div>
+          <h3 class="org-name">{o.name}</h3>
+          <p class="org-desc">{o.desc}</p>
+          <span class="org-cta">
+            <span>{o.cta}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </span>
+        </article>
+      ))}
+    </div>
+
+    <div class="partners-strip" data-reveal>
+      <span class="strip-label mono">// PARTNERS &amp; ALIADOS</span>
+      <div class="strip-list">
+        {partners.map((p) => (
+          <div class="partner" title={p.name}>
+            <div class="partner-frame">
+              <img src={p.logo} alt={`Logo ${p.name}`} loading="lazy" />
+            </div>
+            <span class="partner-name">{p.name}</span>
+            {p.tba && <span class="partner-tba mono">por confirmar</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sponsors-head {
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  .orgs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .org {
+    padding: 32px 28px;
+    transition: transform 0.4s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .org::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grad);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .org:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+  }
+
+  .org:hover::before {
+    opacity: 1;
+  }
+
+  .org-role {
+    font-size: 11px;
+    color: var(--primary);
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .org-logo-wrap {
+    margin: 18px 0 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .org-logo-frame {
+    width: 96px;
+    height: 96px;
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    transition: transform 0.4s ease;
+  }
+
+  .org:hover .org-logo-frame {
+    transform: rotate(-2deg) scale(1.04);
+  }
+
+  .org-logo {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .org-name {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .org-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 22px;
+    flex: 1;
+  }
+
+  .org-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--primary);
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .partners-strip {
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .strip-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.18em;
+    flex-shrink: 0;
+  }
+
+  .strip-list {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .partner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 14px 12px;
+    border-radius: 14px;
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    min-width: 120px;
+    flex: 1;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    cursor: default;
+  }
+
+  .partner:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+  }
+
+  .partner-frame {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  .partner-frame img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .partner-name {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.3;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .partner-tba {
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 980px) {
+    .orgs-grid { grid-template-columns: 1fr; }
+    .partners-strip { flex-direction: column; align-items: flex-start; }
+    .strip-list { gap: 24px; }
+  }
+
+  @media (max-width: 540px) {
+    .partner img { height: 36px; }
+    .strip-list { gap: 18px; }
+  }
+</style>

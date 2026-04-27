@@ -1,0 +1,303 @@
+---
+const AVAL_LOGOS: Record<string, string> = {
+  'IMB Institute': '/logos/imb%20icon.jpg',
+  'GDG Arequipa': '/logos/gdg%20icon.png',
+  'ISUR': '/logos/isur%20icon.png',
+  'IEEE': '/logos/ieee%20icon.png',
+};
+
+const rows = [
+  {
+    profile: 'Ponentes',
+    type: 'Participación como expositor',
+    formats: ['Físico', 'Digital'],
+    avals: [
+      { name: 'IMB Institute' },
+      { name: 'ISUR' },
+      { name: 'GDG Arequipa' },
+    ],
+    note: null,
+  },
+  {
+    profile: 'Jurado',
+    type: 'Participación como jurado evaluador',
+    formats: ['Físico', 'Digital'],
+    avals: [
+      { name: 'IMB Institute' },
+      { name: 'ISUR' },
+      { name: 'GDG Arequipa' },
+    ],
+    note: null,
+  },
+  {
+    profile: 'Mentores',
+    type: 'Participación como mentor',
+    formats: ['Físico', 'Digital'],
+    avals: [
+      { name: 'IMB Institute' },
+      { name: 'GDG Arequipa' },
+    ],
+    note: null,
+  },
+  {
+    profile: 'Voluntarios',
+    type: 'Certificado de voluntariado',
+    formats: ['Digital (PDF)'],
+    avals: [
+      { name: 'IMB Institute' },
+      { name: 'GDG Arequipa' },
+    ],
+    note: 'Mención a ISUR como institución colaboradora',
+  },
+  {
+    profile: 'Participantes',
+    type: 'Participación en hackathon',
+    formats: ['Digital (PDF)'],
+    avals: [
+      { name: 'IMB Institute' },
+      { name: 'GDG Arequipa' },
+      { name: 'IEEE', tba: true },
+    ],
+    note: 'Aval IEEE por confirmar',
+  },
+];
+---
+
+<section id="certifications" class="section certifications">
+  <div class="container">
+    <div class="cert-head" data-reveal>
+      <span class="section-tag">Certificaciones</span>
+      <h2 class="section-title">
+        Cada perfil recibe un <span class="gradient-text">certificado oficial</span>
+      </h2>
+      <p class="section-subtitle">
+        Estructura de certificación diferenciada por rol dentro del evento.
+        Los avales institucionales se aplican según lo acordado con cada aliado estratégico.
+      </p>
+    </div>
+
+    <div class="cert-table glass" data-reveal>
+      <div class="cert-table-head">
+        <span>Perfil</span>
+        <span>Tipo de certificado</span>
+        <span>Formato</span>
+        <span>Aval</span>
+      </div>
+
+      {rows.map((r, i) => (
+        <div class="cert-row" style={`transition-delay: ${i * 60}ms`}>
+          <div class="cell cell-profile">
+            <span class="profile-num mono">0{i + 1}</span>
+            <span class="profile-name">{r.profile}</span>
+          </div>
+          <div class="cell cell-type">{r.type}</div>
+          <div class="cell cell-formats">
+            {r.formats.map((f) => (
+              <span class={`format-chip ${f.toLowerCase().includes('físico') ? 'fmt-fisico' : 'fmt-digital'}`}>{f}</span>
+            ))}
+          </div>
+          <div class="cell cell-avals">
+            <div class="avals-list">
+              {r.avals.map((a) => (
+                <span class={`aval-chip${a.tba ? ' aval-tba' : ''}`}>
+                  {AVAL_LOGOS[a.name] && (
+                    <span class="aval-logo">
+                      <img src={AVAL_LOGOS[a.name]} alt={`Logo ${a.name}`} loading="lazy" />
+                    </span>
+                  )}
+                  <span class="aval-name mono">{a.name}{a.tba ? ' *' : ''}</span>
+                </span>
+              ))}
+            </div>
+            {r.note && <span class="cell-note">{r.note}</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="cert-foot mono" data-reveal>
+      // Documento de propuesta de alianza estratégica · Versión ISUR
+    </p>
+  </div>
+</section>
+
+<style>
+  .cert-head {
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  .cert-table {
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .cert-table-head,
+  .cert-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1.6fr 1.4fr 2fr;
+    gap: 20px;
+    padding: 18px 28px;
+    align-items: center;
+  }
+
+  .cert-table-head {
+    background: var(--surface-strong);
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .cert-row {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s ease;
+  }
+
+  .cert-row:last-child {
+    border-bottom: none;
+  }
+
+  .cert-row:hover {
+    background: var(--surface-strong);
+  }
+
+  .cell-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .profile-num {
+    font-size: 12px;
+    color: var(--primary);
+    letter-spacing: 0.12em;
+  }
+
+  .profile-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .cell-type {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .cell-formats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .format-chip {
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .fmt-fisico {
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  .fmt-digital {
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    color: var(--primary);
+    border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+  }
+
+  .cell-avals {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .avals-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .aval-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px 4px 4px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .aval-tba {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+    color: var(--accent);
+  }
+
+  .aval-logo {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-radius: 50%;
+    padding: 3px;
+    display: grid;
+    place-items: center;
+  }
+
+  .aval-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .aval-name {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .cell-note {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .cert-foot {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.18em;
+  }
+
+  @media (max-width: 980px) {
+    .cert-table-head { display: none; }
+
+    .cert-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 22px 22px;
+    }
+
+    .cell-type::before {
+      content: 'Tipo · ';
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+  }
+</style>

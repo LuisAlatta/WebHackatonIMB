@@ -1,0 +1,242 @@
+---
+const days = [
+  {
+    n: '01',
+    date: '29 · MAY',
+    weekday: 'Viernes',
+    title: 'Apertura & Kickoff',
+    place: 'Sede del hackathon — Kaman / espacio amplio',
+    items: [
+      'Ceremonia de apertura oficial',
+      'Conformación de equipos interdisciplinarios',
+      'Kickoff técnico: stack de IA y reglas',
+      'Inicio del sprint de 48 horas',
+    ],
+    tag: 'DAY 01',
+  },
+  {
+    n: '02',
+    date: '30 · MAY',
+    weekday: 'Sábado',
+    title: 'Charlas magistrales & Build',
+    place: 'Auditorio ISUR + Sede del hackathon',
+    items: [
+      'Charlas magistrales (≈150 asistentes)',
+      'Mentorías 1:1 con expertos en IA',
+      'Workshops técnicos en paralelo',
+      'Build continuo de prototipos',
+    ],
+    tag: 'DAY 02',
+  },
+  {
+    n: '03',
+    date: '31 · MAY',
+    weekday: 'Domingo',
+    title: 'Pitch Final & Premiación',
+    place: 'Auditorio ISUR',
+    items: [
+      'Charla magistral con ponente internacional',
+      'Pitches finales ante el jurado',
+      'Networking de cierre',
+      'Ceremonia de premiación y clausura',
+    ],
+    tag: 'DAY 03',
+  },
+];
+---
+
+<section id="schedule" class="section schedule">
+  <div class="container">
+    <div class="schedule-head" data-reveal>
+      <span class="section-tag">Agenda · 3 días</span>
+      <h2 class="section-title">
+        Tres días para construir <span class="gradient-text">el futuro de la educación</span>
+      </h2>
+      <p class="section-subtitle">
+        Del 29 al 31 de mayo de 2026 en Arequipa. Charlas magistrales, mentoría continua,
+        prototipado intensivo y un demo day frente a un jurado de primer nivel.
+      </p>
+    </div>
+
+    <div class="timeline">
+      {days.map((d, i) => (
+        <article class="day glass" data-reveal style={`transition-delay: ${i * 120}ms`}>
+          <header class="day-head">
+            <span class="day-tag mono">{d.tag}</span>
+            <span class="day-num">{d.n}</span>
+          </header>
+          <div class="day-date">
+            <span class="date-label mono">{d.date}</span>
+            <span class="weekday">{d.weekday}</span>
+          </div>
+          <h3 class="day-title">{d.title}</h3>
+          <p class="day-place">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            {d.place}
+          </p>
+          <ul class="day-items">
+            {d.items.map((it) => (
+              <li>
+                <span class="check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                {it}
+              </li>
+            ))}
+          </ul>
+          <div class="day-glow" aria-hidden="true"></div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .schedule-head {
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .day {
+    position: relative;
+    padding: 32px 28px;
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.3s ease;
+  }
+
+  .day:hover {
+    transform: translateY(-8px);
+    border-color: color-mix(in srgb, var(--primary) 60%, var(--border));
+  }
+
+  .day-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .day-tag {
+    font-size: 11px;
+    color: var(--primary);
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    padding: 6px 12px;
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+
+  .day-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.85;
+  }
+
+  .day-date {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .date-label {
+    font-size: 13px;
+    color: var(--primary);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+
+  .weekday {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .day-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .day-place {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .day-place svg {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .day-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .day-items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .check {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--grad-soft);
+    color: var(--primary);
+    margin-top: 2px;
+  }
+
+  .day-glow {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: var(--accent);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    top: -50px;
+    right: -50px;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .day:hover .day-glow {
+    opacity: 0.35;
+  }
+
+  @media (max-width: 980px) {
+    .timeline { grid-template-columns: 1fr; }
+  }
+</style>

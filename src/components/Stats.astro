@@ -1,0 +1,126 @@
+---
+const stats = [
+  { num: 50, suffix: '', label: 'Estudiantes seleccionados', sub: '9.° y 10.° ciclo + egresados' },
+  { num: 10, suffix: '', label: 'Equipos interdisciplinarios', sub: '3 a 5 integrantes por equipo' },
+  { num: 150, suffix: '+', label: 'Asistentes a charlas', sub: 'Auditorio ISUR durante 2 días' },
+  { num: 3, suffix: '', label: 'Días intensivos', sub: '29, 30 y 31 de mayo 2026' },
+];
+---
+
+<section id="stats" class="section stats">
+  <div class="container">
+    <div class="stats-grid">
+      {stats.map((s, i) => (
+        <div class="stat glass" data-reveal style={`transition-delay: ${i * 100}ms`}>
+          <div class="stat-number">
+            <span class="num" data-target={s.num}>0</span><span class="suffix">{s.suffix}</span>
+          </div>
+          <div class="stat-label">{s.label}</div>
+          <div class="stat-sub">{s.sub}</div>
+          <div class="stat-glow" aria-hidden="true"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats {
+    padding: 32px 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .stat {
+    position: relative;
+    padding: 36px 28px;
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.3s ease;
+  }
+
+  .stat:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .stat-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .stat-glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: var(--primary);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.2;
+    bottom: -100px;
+    right: -100px;
+    transition: opacity 0.4s ease;
+  }
+
+  .stat:hover .stat-glow {
+    opacity: 0.4;
+  }
+
+  @media (max-width: 880px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>('.num');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target as HTMLElement;
+        const target = Number(el.dataset.target ?? '0');
+        const duration = 1400;
+        const start = performance.now();
+        const animate = (now: number) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased).toString();
+          if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+        observer.unobserve(el);
+      });
+    },
+    { threshold: 0.5 }
+  );
+  counters.forEach((c) => observer.observe(c));
+</script>

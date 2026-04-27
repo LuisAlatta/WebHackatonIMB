@@ -1,0 +1,361 @@
+---
+const speakers = [
+  {
+    role: 'Charla magistral · Día 3',
+    name: 'Ponente internacional',
+    org: 'Por anunciar',
+    bio: 'Charla de cierre con un referente internacional en IA aplicada a la educación, justo antes de los pitches finales.',
+    initials: '★',
+    logo: null,
+    status: 'tba',
+  },
+  {
+    role: 'Charla institucional · Día 1 o 3',
+    name: 'Ponente ISUR',
+    org: 'Instituto Superior Universitario de Arequipa',
+    bio: 'Designado por ISUR como aliado estratégico y coorganizador para posicionar a la institución como referente en IA y tecnología educativa.',
+    initials: 'IS',
+    logo: '/logos/isur%20icon.png',
+    status: 'partner',
+  },
+  {
+    role: 'Mentoría técnica · Día 1 y 2',
+    name: 'Mentores GDG Arequipa',
+    org: 'Google Developer Group · Arequipa',
+    bio: 'Mentores expertos de la comunidad GDG acompañando a los 10 equipos durante el sprint de 48 horas.',
+    initials: 'GDG',
+    logo: '/logos/gdg%20icon.png',
+    status: 'partner',
+  },
+  {
+    role: 'Workshops técnicos · Día 2',
+    name: 'Industria & Academia',
+    org: 'Convocatoria abierta',
+    bio: 'Estamos seleccionando workshops sobre RAG, agentes, fine-tuning y multimodalidad. ¿Quieres dar uno? Escríbenos.',
+    initials: '+',
+    logo: null,
+    status: 'open',
+  },
+];
+
+const jury = [
+  { label: 'IMB Institute', detail: 'Organizador principal', logo: '/logos/imb%20icon.jpg' },
+  { label: 'GDG Arequipa', detail: 'Coorganizador', logo: '/logos/gdg%20icon.png' },
+  { label: 'ISUR', detail: 'Aliado estratégico — 1 representante', logo: '/logos/isur%20icon.png' },
+  { label: 'Industria', detail: 'Líderes de IA y emprendimiento', logo: null },
+];
+---
+
+<section id="speakers" class="section speakers">
+  <div class="container">
+    <div class="speakers-head" data-reveal>
+      <span class="section-tag">Ponentes · Mentores · Jurado</span>
+      <h2 class="section-title">
+        Tres días con quienes ya están <span class="gradient-text">construyendo con IA</span>
+      </h2>
+      <p class="section-subtitle">
+        Charlas magistrales con ponentes internacionales, mentoría top-tier durante el sprint
+        y un jurado interdisciplinario para los pitches finales del Día 3.
+      </p>
+    </div>
+
+    <div class="speakers-grid">
+      {speakers.map((s, i) => (
+        <article class="speaker glass" data-reveal style={`transition-delay: ${i * 100}ms`}>
+          <div class={`speaker-avatar status-${s.status}${s.logo ? ' has-logo' : ''}`}>
+            {s.logo ? (
+              <img src={s.logo} alt={`Logo ${s.name}`} loading="lazy" />
+            ) : (
+              <span>{s.initials}</span>
+            )}
+          </div>
+          <span class="speaker-role mono">{s.role}</span>
+          <h3 class="speaker-name">{s.name}</h3>
+          <span class="speaker-org">{s.org}</span>
+          <p class="speaker-bio">{s.bio}</p>
+          {s.status === 'tba' && <span class="badge badge-tba mono">por confirmar</span>}
+          {s.status === 'open' && <span class="badge badge-open mono">convocatoria abierta</span>}
+          {s.status === 'partner' && <span class="badge badge-partner mono">aliado confirmado</span>}
+        </article>
+      ))}
+    </div>
+
+    <div class="jury-card glass" data-reveal>
+      <div class="jury-head">
+        <span class="section-tag jury-tag">Jurado · Día 3</span>
+        <h3 class="jury-title">
+          Pitches finales evaluados por un panel <span class="gradient-text">interdisciplinario</span>
+        </h3>
+        <p class="jury-sub">
+          El panel evaluará prototipos en términos de impacto educativo real, viabilidad técnica
+          y narrativa del pitch. ISUR designa un representante en el panel como parte de la alianza.
+        </p>
+      </div>
+      <ul class="jury-list">
+        {jury.map((j) => (
+          <li class="jury-item">
+            {j.logo ? (
+              <span class="jury-logo">
+                <img src={j.logo} alt={`Logo ${j.label}`} loading="lazy" />
+              </span>
+            ) : (
+              <span class="jury-dot"></span>
+            )}
+            <div>
+              <div class="jury-label">{j.label}</div>
+              <div class="jury-detail">{j.detail}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="speakers-cta" data-reveal>
+      <span class="cta-text">¿Eres ponente, mentor o quieres proponer un workshop?</span>
+      <a href="mailto:nexia2026@imb.pe?subject=Propuesta%20de%20ponencia%20NEXIA%202026" class="btn btn-primary">
+        Postular como ponente
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .speakers-head {
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .speaker {
+    padding: 28px 24px;
+    transition: transform 0.4s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+  }
+
+  .speaker:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+  }
+
+  .speaker-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: #ffffff;
+    background: var(--grad);
+    margin-bottom: 8px;
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--primary) 30%, transparent);
+    overflow: hidden;
+  }
+
+  .speaker-avatar.has-logo {
+    background: #ffffff;
+    padding: 8px;
+  }
+
+  .speaker-avatar.has-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .speaker-avatar.status-tba {
+    background: var(--surface-strong);
+    color: var(--primary);
+    border: 1px dashed var(--primary);
+  }
+
+  .speaker-avatar.status-open {
+    background: var(--surface-strong);
+    color: var(--accent);
+    border: 1px dashed var(--accent);
+  }
+
+  .speaker-role {
+    font-size: 11px;
+    color: var(--primary);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+
+  .speaker-name {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .speaker-org {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 6px;
+  }
+
+  .speaker-bio {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .badge {
+    align-self: flex-start;
+    margin-top: 12px;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .badge-tba {
+    background: var(--surface-strong);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+
+  .badge-open {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+
+  .badge-partner {
+    background: color-mix(in srgb, var(--success) 14%, transparent);
+    color: var(--success);
+    border: 1px solid color-mix(in srgb, var(--success) 45%, transparent);
+  }
+
+  .jury-card {
+    padding: 36px 36px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  .jury-tag {
+    margin-bottom: 8px;
+  }
+
+  .jury-title {
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    font-weight: 700;
+    margin: 12px 0 10px;
+    line-height: 1.2;
+  }
+
+  .jury-sub {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .jury-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .jury-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .jury-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 12px var(--primary);
+    flex-shrink: 0;
+  }
+
+  .jury-logo {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  .jury-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .jury-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .jury-detail {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .speakers-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 24px 28px;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+  }
+
+  .cta-text {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  @media (max-width: 1080px) {
+    .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+    .jury-card { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 540px) {
+    .speakers-grid { grid-template-columns: 1fr; }
+    .jury-list { grid-template-columns: 1fr; }
+    .jury-card { padding: 28px 24px; }
+  }
+</style>
