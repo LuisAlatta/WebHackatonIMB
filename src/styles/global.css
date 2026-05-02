@@ -142,6 +142,7 @@ html {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
   background: var(--bg-0);
   color: var(--text);
   line-height: 1.6;
@@ -213,7 +214,7 @@ button {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.5;
+  opacity: 0.28;
   animation: float 18s ease-in-out infinite;
 }
 
@@ -364,7 +365,7 @@ button {
 
 .glass {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--primary) 14%, var(--border));
   border-radius: 20px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -373,8 +374,8 @@ button {
 /* Reveal animation */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-reveal].is-visible {
@@ -392,6 +393,37 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--primary), var(--primary-2));
+  background: var(--primary);
   border-radius: 999px;
+  opacity: 0.7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-2);
+}
+
+/* Reduced motion: respeta preferencias del sistema */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .bg-orbs::before,
+  .bg-orbs::after {
+    animation: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .section-tag::before {
+    animation: none;
+  }
 }
