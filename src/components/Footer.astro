@@ -2,7 +2,6 @@
 ---
 
 <footer class="footer">
-  <div class="footer-mega" aria-hidden="true">NEXIA</div>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
@@ -82,6 +81,8 @@
           <a href="#" aria-label="WhatsApp">WhatsApp</a>
         </div>
       </div>
+
+      <div class="footer-mega" aria-hidden="true">NEXIA</div>
     </div>
 
     <div class="footer-bottom">
@@ -114,10 +115,17 @@
   }
 
   .footer-top {
+    position: relative;
     display: grid;
     grid-template-columns: 1.2fr 2fr;
     gap: 60px;
     padding-bottom: 60px;
+  }
+
+  .footer-brand,
+  .footer-cols {
+    position: relative;
+    z-index: 1;
   }
 
   .brand {
@@ -312,12 +320,12 @@
   .footer-mega {
     position: absolute;
     left: 50%;
-    bottom: -2vw;
+    bottom: 0;
     transform: translateX(-50%);
     width: 100%;
     text-align: center;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(6rem, 22vw, 16rem);
+    font-size: clamp(5rem, 18vw, 14rem);
     font-weight: 900;
     line-height: 0.85;
     letter-spacing: -0.04em;
@@ -325,7 +333,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    opacity: 0.12;
+    opacity: 0.14;
     z-index: 0;
     pointer-events: none;
     user-select: none;
