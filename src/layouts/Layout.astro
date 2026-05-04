@@ -13,7 +13,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="es" data-theme="cyber">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,11 +38,8 @@ const {
   <slot />
 
   <script>
-    // Restore saved theme
-    const savedTheme = localStorage.getItem('nexia-theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
+    // Limpiar paletas antiguas que pudieran quedar en localStorage de versiones anteriores
+    try { localStorage.removeItem('nexia-theme'); } catch (_) {}
 
     // Reveal-on-scroll
     const observer = new IntersectionObserver(

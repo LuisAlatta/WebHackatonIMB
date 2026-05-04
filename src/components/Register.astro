@@ -7,6 +7,15 @@ const benefits = [
   'Networking con los 50 mejores estudiantes de Arequipa',
   'Premios y oportunidades para escalar tu prototipo',
 ];
+
+const tracks = [
+  { value: 'ai-tutoring', label: '01 · AI Tutoring' },
+  { value: 'knowledge-engines', label: '02 · Knowledge Engines' },
+  { value: 'auto-evaluation', label: '03 · Auto-Evaluation' },
+  { value: 'inclusive-ai', label: '04 · Inclusive AI' },
+];
+
+const endpoint = import.meta.env.PUBLIC_SHEETS_ENDPOINT ?? '';
 ---
 
 <section id="register" class="section register">
@@ -42,9 +51,9 @@ const benefits = [
           </ul>
 
           <div class="cta-row">
-            <a href="mailto:nexia2026@imb.pe" class="btn btn-primary">
-              Postular ahora
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            <a href="#apply-form" class="btn btn-ghost">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              Ir al formulario
             </a>
             <a href="tel:+51993426785" class="btn btn-ghost">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -54,27 +63,103 @@ const benefits = [
         </div>
 
         <div class="register-visual">
-          <div class="form-mock">
-            <div class="form-row">
-              <span class="form-label mono">// 01_TEAM</span>
-              <span class="form-value">{`{ "name": "Tu equipo", "size": 3-5 }`}</span>
+          <form
+            id="apply-form"
+            class="apply-form"
+            novalidate
+            data-endpoint={endpoint}
+          >
+            <div class="apply-head">
+              <span class="form-tag mono">// FORMULARIO DE POSTULACIÓN</span>
+              <span class="form-status">
+                <span class="stamp-dot"></span>
+                <span class="mono">50 spots · open</span>
+              </span>
             </div>
-            <div class="form-row">
-              <span class="form-label mono">// 02_UNIVERSITY</span>
-              <span class="form-value">universidades · arequipa</span>
+
+            <div class="field">
+              <label for="team">Nombre del equipo</label>
+              <input id="team" name="team" type="text" required maxlength="60" placeholder="Ej. Neon Coders" />
             </div>
-            <div class="form-row">
-              <span class="form-label mono">// 03_TRACK</span>
-              <span class="form-value">elige tu desafío de IA</span>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="size">Integrantes</label>
+                <select id="size" name="size" required>
+                  <option value="" disabled selected>Selecciona</option>
+                  <option value="3">3 personas</option>
+                  <option value="4">4 personas</option>
+                  <option value="5">5 personas</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="cycle">Ciclo del líder</label>
+                <select id="cycle" name="cycle" required>
+                  <option value="" disabled selected>Selecciona</option>
+                  <option value="9">9.° ciclo</option>
+                  <option value="10">10.° ciclo</option>
+                  <option value="egresado">Egresado reciente</option>
+                </select>
+              </div>
             </div>
-            <div class="form-row">
-              <span class="form-label mono">// 04_IDEA</span>
-              <span class="form-value">describe tu impacto educativo</span>
+
+            <div class="field">
+              <label for="university">Universidad</label>
+              <input id="university" name="university" type="text" required maxlength="80" placeholder="Ej. UNSA, UCSM, UCSP, ISUR..." />
             </div>
-            <div class="form-stamp">
-              <span class="stamp-dot"></span>
-              <span class="mono">STATUS: OPEN · 50 SPOTS</span>
+
+            <div class="field">
+              <label for="leaderName">Nombre del líder</label>
+              <input id="leaderName" name="leaderName" type="text" required maxlength="80" placeholder="Nombre y apellido" />
             </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="leaderEmail">Email</label>
+                <input id="leaderEmail" name="leaderEmail" type="email" required placeholder="tu@correo.com" />
+              </div>
+              <div class="field">
+                <label for="leaderPhone">WhatsApp</label>
+                <input id="leaderPhone" name="leaderPhone" type="tel" required pattern="^\+?\d{8,15}$" placeholder="+51 9..." />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="track">Track elegido</label>
+              <select id="track" name="track" required>
+                <option value="" disabled selected>Selecciona un track</option>
+                {tracks.map((t) => <option value={t.value}>{t.label}</option>)}
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="idea">Tu idea (máx. 600 caracteres)</label>
+              <textarea id="idea" name="idea" rows="3" required maxlength="600" placeholder="¿Qué problema educativo resuelves con IA?"></textarea>
+            </div>
+
+            <label class="terms">
+              <input type="checkbox" name="terms" required />
+              <span>Acepto las bases del hackathon y el tratamiento de mis datos para fines del evento.</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary submit-btn">
+              <span class="submit-label">Enviar postulación</span>
+              <span class="submit-loading" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.22-8.56"/></svg>
+              </span>
+              <svg class="submit-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+
+            <p class="form-error" role="alert" aria-live="polite"></p>
+          </form>
+
+          <div class="apply-success" hidden>
+            <div class="success-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>¡Postulación recibida!</h3>
+            <p>Te escribiremos al correo y al WhatsApp con la confirmación y los siguientes pasos.</p>
+            <button type="button" class="btn btn-ghost reset-btn">Enviar otra postulación</button>
           </div>
         </div>
       </div>
@@ -139,9 +224,9 @@ const benefits = [
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1.05fr;
     gap: 60px;
-    align-items: center;
+    align-items: start;
   }
 
   .register-title {
@@ -200,52 +285,44 @@ const benefits = [
     flex-wrap: wrap;
   }
 
-  /* Form mock */
-  .form-mock {
-    background: rgba(0, 0, 0, 0.4);
+  /* ---------- FORM ---------- */
+  .apply-form {
+    background: rgba(0, 0, 0, 0.45);
     border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 24px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transform: rotate(2deg);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-  }
-
-  .form-row {
-    padding: 14px 0;
-    border-bottom: 1px dashed var(--border);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 16px;
   }
 
-  .form-row:last-of-type {
-    border-bottom: none;
+  .apply-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  .form-label {
+  .form-tag {
     font-size: 11px;
     color: var(--text-dim);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
   }
 
-  .form-value {
-    font-size: 14px;
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .form-stamp {
+  .form-status {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-top: 16px;
-    padding: 8px 14px;
+    padding: 6px 12px;
     background: var(--grad-soft);
-    border: 1px solid var(--primary);
+    border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent);
     border-radius: 999px;
-    font-size: 11px;
+    font-size: 10px;
     color: var(--primary);
     letter-spacing: 0.18em;
   }
@@ -259,12 +336,228 @@ const benefits = [
     animation: pulse 1.5s ease-in-out infinite;
   }
 
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field label,
+  .terms span {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .apply-form input[type='text'],
+  .apply-form input[type='email'],
+  .apply-form input[type='tel'],
+  .apply-form select,
+  .apply-form textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .apply-form textarea {
+    resize: vertical;
+    min-height: 78px;
+  }
+
+  .apply-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239aa3c7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 34px;
+  }
+
+  .apply-form input:focus,
+  .apply-form select:focus,
+  .apply-form textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent);
+    background: rgba(0, 0, 0, 0.65);
+  }
+
+  .apply-form input:user-invalid,
+  .apply-form select:user-invalid,
+  .apply-form textarea:user-invalid {
+    border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+
+  .terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .terms input {
+    margin-top: 2px;
+    accent-color: var(--primary);
+  }
+
+  .submit-btn {
+    margin-top: 6px;
+    justify-content: center;
+    position: relative;
+  }
+
+  .submit-loading {
+    display: none;
+  }
+
+  .submit-loading svg {
+    animation: spin 0.9s linear infinite;
+  }
+
+  .apply-form[data-state='loading'] .submit-label,
+  .apply-form[data-state='loading'] .submit-arrow {
+    visibility: hidden;
+  }
+
+  .apply-form[data-state='loading'] .submit-loading {
+    display: inline-flex;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .apply-form[data-state='loading'] .submit-btn {
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  .form-error {
+    min-height: 0;
+    margin: 0;
+    font-size: 12px;
+    color: #ff7aa8;
+    letter-spacing: 0.02em;
+  }
+
+  .form-error:not(:empty) {
+    margin-top: 4px;
+  }
+
+  /* ---------- SUCCESS ---------- */
+  .apply-success {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid color-mix(in srgb, var(--success) 50%, transparent);
+    border-radius: 20px;
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: 0 0 40px color-mix(in srgb, var(--success) 30%, transparent);
+  }
+
+  .apply-success h3 {
+    font-size: 22px;
+    margin: 14px 0 8px;
+    color: var(--text);
+  }
+
+  .apply-success p {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 22px;
+    line-height: 1.6;
+  }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+    background: color-mix(in srgb, var(--success) 22%, transparent);
+    color: var(--success);
+    border: 1px solid color-mix(in srgb, var(--success) 55%, transparent);
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
   @media (max-width: 980px) {
-    .register-grid { grid-template-columns: 1fr; }
-    .form-mock { transform: none; max-width: 460px; }
+    .register-grid { grid-template-columns: 1fr; gap: 40px; }
   }
 
   @media (max-width: 540px) {
     .benefits { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; gap: 16px; }
+    .apply-form { padding: 22px; }
   }
 </style>
+
+<script>
+  const form = document.getElementById('apply-form') as HTMLFormElement | null;
+  const success = document.querySelector('.apply-success') as HTMLElement | null;
+  const errorBox = form?.querySelector('.form-error') as HTMLElement | null;
+  const resetBtn = document.querySelector('.reset-btn') as HTMLButtonElement | null;
+
+  if (form && success && errorBox) {
+    const endpoint = (form.dataset.endpoint || '').trim();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.textContent = '';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      form.dataset.state = 'loading';
+
+      try {
+        if (!endpoint) {
+          // Modo demo: sin endpoint. Loguea por consola para verificar UX antes del setup real.
+          const data = Object.fromEntries(new FormData(form));
+          console.info('[apply-form] PUBLIC_SHEETS_ENDPOINT vacío. Datos que se hubieran enviado:', data);
+          await new Promise((r) => setTimeout(r, 600));
+        } else {
+          await fetch(endpoint, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: new FormData(form),
+          });
+        }
+
+        form.hidden = true;
+        success.hidden = false;
+        form.reset();
+      } catch (err) {
+        errorBox.textContent = 'No pudimos enviar tu postulación. Revisa tu conexión o escríbenos a nexia2026@imb.pe';
+        console.error('[apply-form] error', err);
+      } finally {
+        form.dataset.state = '';
+      }
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      success.hidden = true;
+      form.hidden = false;
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+</script>

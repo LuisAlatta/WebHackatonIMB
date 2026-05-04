@@ -1,0 +1,476 @@
+---
+const prizes = [
+  {
+    place: '02',
+    label: 'Segundo lugar',
+    pack: "Builder's Pack",
+    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80',
+    alt: 'Equipo de estudiantes trabajando en una mesa con laptops',
+    rank: 'silver',
+    value: 'Premio en efectivo · TBA',
+    points: [
+      '3 meses de mentoría continua con GDG · IMB',
+      'USD 2,500 en créditos cloud (Google Cloud / AWS)',
+      'Workshop premium de IA aplicada a producto',
+      'Networking con sponsors y comunidades aliadas',
+      'Difusión en medios y prensa del evento',
+    ],
+    order: 1,
+  },
+  {
+    place: '01',
+    label: 'Primer lugar',
+    pack: "Champion's Pack",
+    img: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=900&q=80',
+    alt: 'Trofeo dorado iluminado celebrando una victoria',
+    rank: 'gold',
+    value: 'Premio en efectivo · TBA',
+    points: [
+      '6 meses de incubación con IMB Institute · ISUR',
+      'USD 5,000 en créditos cloud + acceso a GPU dedicado',
+      'Mentoría 1:1 trimestral con expertos GDG e industria',
+      'Pase completo a un evento internacional de IA',
+      'Reel de presentación + anuncio en medios aliados',
+      'Pitch directo ante incubadoras y fondos del ecosistema',
+    ],
+    order: 2,
+    featured: true,
+  },
+  {
+    place: '03',
+    label: 'Tercer lugar',
+    pack: "Innovator's Pack",
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+    alt: 'Placa de circuito iluminada con luces neón',
+    rank: 'bronze',
+    value: 'Premio en efectivo · TBA',
+    points: [
+      'USD 1,000 en créditos cloud (Google Cloud / AWS)',
+      'Kit de hardware del organizador (auriculares + drive)',
+      'Cursos premium de IA (Coursera · Google · DeepLearning.AI)',
+      'Reconocimiento oficial y publicación del prototipo',
+    ],
+    order: 3,
+  },
+];
+
+const finalistsPerks = [
+  {
+    icon: 'cert',
+    title: 'Certificado oficial',
+    desc: 'Avalado por IMB Institute, GDG Arequipa e IEEE (por confirmar).',
+  },
+  {
+    icon: 'demo',
+    title: 'Demo Day',
+    desc: 'Presenta tu prototipo frente a inversionistas, sponsors y medios.',
+  },
+  {
+    icon: 'community',
+    title: 'Comunidad GDG',
+    desc: 'Membresía activa y acceso prioritario a futuros eventos técnicos.',
+  },
+  {
+    icon: 'mentor',
+    title: 'Red de mentores',
+    desc: 'Conexión directa con líderes de industria y academia regional.',
+  },
+  {
+    icon: 'learn',
+    title: 'Becas de cursos',
+    desc: 'Acceso a contenido premium de IA seleccionado por el comité.',
+  },
+  {
+    icon: 'merch',
+    title: 'Kit oficial NEXIA',
+    desc: 'Merchandising del evento + credencial física conmemorativa.',
+  },
+];
+---
+
+<section id="prizes" class="section prizes">
+  <div class="container">
+    <div class="prizes-head" data-reveal>
+      <span class="section-tag">Premios · Recompensas</span>
+      <h2 class="section-title">
+        Más que un trofeo:<br/>
+        <span class="gradient-text">un trampolín para tu prototipo.</span>
+      </h2>
+      <p class="section-subtitle">
+        Tres packs diseñados para acelerar a los equipos ganadores y un ecosistema
+        de beneficios para los 50 finalistas. Los montos en efectivo se anuncian al
+        cerrar el roster de sponsors.
+      </p>
+    </div>
+
+    <div class="podium" data-reveal>
+      {prizes.map((p) => (
+        <article
+          class={`prize prize--${p.rank} ${p.featured ? 'is-featured' : ''}`}
+          style={`--order: ${p.order};`}
+        >
+          <div class="prize-media">
+            <img src={p.img} alt={p.alt} loading="lazy" />
+            <div class="prize-tint" aria-hidden="true"></div>
+            <span class="prize-place mono">{p.place}</span>
+            {p.featured && <span class="prize-crown" aria-hidden="true">★</span>}
+          </div>
+          <div class="prize-body">
+            <span class="prize-label mono">{p.label}</span>
+            <h3 class="prize-pack">{p.pack}</h3>
+            <ul class="prize-points">
+              {p.points.map((pt) => (
+                <li>
+                  <span class="bullet" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                  <span>{pt}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="prize-value">
+              <span class="mono">{p.value}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="finalists" data-reveal>
+      <div class="finalists-head">
+        <span class="section-tag">Para los 50 finalistas</span>
+        <h3 class="finalists-title">Todos los seleccionados se llevan algo a casa.</h3>
+      </div>
+      <ul class="finalists-grid">
+        {finalistsPerks.map((perk) => (
+          <li class="perk">
+            <span class="perk-icon" aria-hidden="true">
+              {perk.icon === 'cert' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 12.5 17 22l-5-3-5 3 1.5-9.5"/></svg>
+              )}
+              {perk.icon === 'demo' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              )}
+              {perk.icon === 'community' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              )}
+              {perk.icon === 'mentor' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              )}
+              {perk.icon === 'learn' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              )}
+              {perk.icon === 'merch' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+              )}
+            </span>
+            <div>
+              <span class="perk-title">{perk.title}</span>
+              <span class="perk-desc">{perk.desc}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .prizes-head {
+    max-width: 760px;
+    margin-bottom: 56px;
+  }
+
+  /* ---------- PODIO ---------- */
+  .podium {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 24px;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+
+  .prize {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .prize:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+  }
+
+  .prize--gold.is-featured {
+    border-color: color-mix(in srgb, var(--primary) 55%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 30%, transparent),
+                0 30px 80px color-mix(in srgb, var(--primary) 25%, transparent),
+                0 10px 50px color-mix(in srgb, var(--accent) 22%, transparent);
+    transform: translateY(-22px);
+  }
+
+  .prize--gold.is-featured:hover {
+    transform: translateY(-30px);
+  }
+
+  .prize-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .prize-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .prize:hover .prize-media img {
+    transform: scale(1.06);
+  }
+
+  .prize-tint {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--bg-1) 92%, transparent) 100%),
+      linear-gradient(135deg, color-mix(in srgb, var(--primary) 30%, transparent), transparent 60%);
+  }
+
+  .prize--gold .prize-tint {
+    background:
+      linear-gradient(180deg, transparent 25%, color-mix(in srgb, var(--bg-1) 92%, transparent) 100%),
+      linear-gradient(135deg, color-mix(in srgb, var(--primary) 35%, transparent), color-mix(in srgb, var(--accent) 35%, transparent) 70%);
+  }
+
+  .prize--bronze .prize-tint {
+    background:
+      linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--bg-1) 92%, transparent) 100%),
+      linear-gradient(135deg, color-mix(in srgb, var(--accent) 30%, transparent), transparent 60%);
+  }
+
+  .prize-place {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0.18em;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent);
+    padding: 6px 12px;
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .prize--gold .prize-place {
+    background: var(--grad-soft);
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--primary) 65%, transparent);
+  }
+
+  .prize-crown {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--grad);
+    color: var(--bg-0);
+    font-size: 16px;
+    font-weight: 900;
+    box-shadow: 0 0 24px color-mix(in srgb, var(--primary) 60%, transparent);
+  }
+
+  .prize-body {
+    padding: 26px 24px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prize-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .prize-pack {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 6px 0 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .prize--gold .prize-pack {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .prize-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+    flex: 1;
+  }
+
+  .prize-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  .bullet {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--primary) 22%, transparent);
+    color: var(--primary);
+    border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent);
+    margin-top: 2px;
+  }
+
+  .prize-value {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .prize-value .mono {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--primary);
+    text-transform: uppercase;
+  }
+
+  .prize--gold .prize-value .mono {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ---------- 50 FINALISTAS ---------- */
+  .finalists {
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: clamp(28px, 4vw, 48px);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--bg-2) 70%, transparent), color-mix(in srgb, var(--bg-1) 80%, transparent));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .finalists-head {
+    margin-bottom: 32px;
+  }
+
+  .finalists-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-top: 14px;
+  }
+
+  .finalists-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .perk {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  }
+
+  .perk:hover {
+    border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+    transform: translateY(-3px);
+    background: color-mix(in srgb, var(--primary) 6%, var(--surface));
+  }
+
+  .perk-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--primary) 18%, transparent);
+    color: var(--primary);
+    border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  }
+
+  .perk > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .perk-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  .perk-desc {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1080px) {
+    .podium {
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+    .prize--gold.is-featured { transform: none; grid-column: 1 / -1; }
+    .prize--gold.is-featured:hover { transform: translateY(-6px); }
+    .finalists-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 720px) {
+    .podium { grid-template-columns: 1fr; gap: 20px; margin-bottom: 56px; }
+    .prize--gold.is-featured { grid-column: auto; }
+    .prize { order: var(--order); }
+  }
+
+  @media (max-width: 540px) {
+    .finalists-grid { grid-template-columns: 1fr; }
+  }
+</style>
