@@ -68,6 +68,19 @@ button {
   color: inherit;
 }
 
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
 ::selection {
   background: var(--primary);
   color: var(--bg-0);
@@ -201,11 +214,9 @@ button {
 }
 
 .gradient-text {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--primary);
+  font-weight: inherit;
+  letter-spacing: inherit;
 }
 
 .btn {

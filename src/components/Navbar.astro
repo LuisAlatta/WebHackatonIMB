@@ -22,13 +22,7 @@
     </a>
 
     <nav class="nav-links" aria-label="Principal">
-      <a href="#about">Sobre el evento</a>
-      <a href="#stats">Cifras</a>
-      <a href="#schedule">Agenda</a>
-      <a href="#tracks">Tracks</a>
-      <a href="#speakers">Ponentes</a>
       <a href="#sponsors">Aliados</a>
-      <a href="#certifications">Certificaciones</a>
       <a href="#prizes">Premios</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -61,6 +55,10 @@
     gap: 24px;
   }
 
+  .nav-links {
+    margin-left: auto;
+  }
+
   .brand {
     display: flex;
     align-items: center;
@@ -89,10 +87,7 @@
     font-weight: 800;
     font-size: 18px;
     letter-spacing: 0.05em;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
   }
 
   .brand-year {
@@ -105,18 +100,21 @@
 
   .nav-links {
     display: flex;
-    gap: 32px;
-    font-size: 14px;
-    color: var(--text-dim);
+    gap: 36px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.01em;
   }
 
   .nav-links a {
     position: relative;
+    color: var(--text);
     transition: color 0.3s ease;
   }
 
   .nav-links a:hover {
-    color: var(--text);
+    color: var(--primary);
   }
 
   .nav-links a::after {
