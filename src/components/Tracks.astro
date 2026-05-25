@@ -2,31 +2,24 @@
 const tracks = [
   {
     code: '01',
-    name: 'AI Tutoring',
-    desc: 'Asistentes personalizados que se adaptan al ritmo y estilo de aprendizaje de cada estudiante.',
-    tags: ['LLM', 'Adaptive', 'NLP'],
-    img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
+    name: 'Inclusión Educativa Inteligente',
+    desc: '¿Cómo garantizar que la tecnología impulse una educación más accesible e inclusiva? Se buscan herramientas de IA para estudiantes con discapacidades, barreras idiomáticas o dificultades cognitivas: subtítulos automáticos, adaptación de contenido en múltiples formatos, etc.',
+    tags: ['A11y', 'Inclusive', 'Speech'],
+    img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80',
   },
   {
     code: '02',
-    name: 'Knowledge Engines',
-    desc: 'Bibliotecas vivas: indexa contenidos universitarios y conviértelos en respuestas con citas.',
-    tags: ['RAG', 'Vector', 'Search'],
-    img: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    code: '03',
-    name: 'Auto-Evaluation',
-    desc: 'Modelos que retroalimentan ensayos, código y exámenes orales con justificación clara.',
-    tags: ['Eval', 'Multimodal', 'Speech'],
+    name: 'Evaluación Inteligente y Feedback en Tiempo Real',
+    desc: '¿Cómo transformar la evaluación tradicional en un proceso continuo, automatizado y personalizado? Se buscan sistemas que analicen respuestas abiertas, generen retroalimentación inmediata y diseñen evaluaciones adaptativas que orienten el progreso del estudiante.',
+    tags: ['Eval', 'Adaptive', 'Real-time'],
     img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
   },
   {
-    code: '04',
-    name: 'Inclusive AI',
-    desc: 'Accesibilidad, traducción a lenguas originarias y educación sin barreras económicas.',
-    tags: ['ASR', 'TTS', 'A11y'],
-    img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80',
+    code: '03',
+    name: 'Propuesta Libre (IA + Educación)',
+    desc: 'Soluciones innovadoras no contempladas en los retos anteriores, alineadas al objetivo general del evento: usar IA para transformar procesos educativos. La propuesta debe justificar su impacto y viabilidad.',
+    tags: ['Innovation', 'Impact', 'Free'],
+    img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80',
   },
 ];
 ---
@@ -36,7 +29,7 @@ const tracks = [
     <div class="tracks-head" data-reveal>
       <span class="section-tag">Tracks · Categorías</span>
       <h2 class="section-title">
-        4 frentes para <span class="gradient-text">transformar la educación</span>
+        3 frentes para <span class="gradient-text">transformar la educación</span>
       </h2>
       <p class="section-subtitle">
         Cada equipo elige un track y construye un prototipo funcional con impacto real.
@@ -77,7 +70,7 @@ const tracks = [
 
   .tracks-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 

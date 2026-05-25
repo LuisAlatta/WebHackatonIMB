@@ -1,41 +1,31 @@
 ---
 const finalistsPerks = [
   {
-    icon: 'cert',
-    title: 'Certificado oficial',
-    desc: 'Avalado por IMB Institute, GDG Arequipa e IEEE (por confirmar).',
-  },
-  {
-    icon: 'demo',
-    title: 'Demo Day',
-    desc: 'Presenta tu prototipo frente a inversionistas, sponsors y medios.',
-  },
-  {
-    icon: 'community',
-    title: 'Comunidad GDG',
-    desc: 'Membresía activa y acceso prioritario a futuros eventos técnicos.',
-  },
-  {
     icon: 'mentor',
-    title: 'Red de mentores',
-    desc: 'Conexión directa con líderes de industria y academia regional.',
+    title: '2do Lugar',
+    desc: '600 dólares Premio económico · Mentoría grupal · Certificado de Reconocimiento',
   },
   {
     icon: 'learn',
-    title: 'Becas de cursos',
-    desc: 'Acceso a contenido premium de IA seleccionado por el comité.',
+    title: '3er Lugar',
+    desc: '300 dólares Premio económico · Certificado de Reconocimiento',
   },
   {
-    icon: 'merch',
-    title: 'Kit oficial NEXIA',
-    desc: 'Merchandising del evento + credencial física conmemorativa.',
+    icon: 'demo',
+    title: 'Mejor Pitch',
+    desc: 'Reconocimiento especial del jurado',
+  },
+  {
+    icon: 'cert',
+    title: 'Todos los equipos',
+    desc: 'Certificado de participación avalado',
   },
 ];
 
 const winnersPerk = {
   icon: 'briefcase',
-  title: 'Ingreso directo como practicante',
-  desc: 'En nuestras empresas aliadas: oportunidad real de práctica profesional para el equipo ganador.',
+  title: '1er Lugar',
+  desc: '1200 dólares Capital semilla · Puesto laboral en IMB · Proceso de incubación JAKU · Mentoría especializada · Certificado de Excelencia',
 };
 ---
 
@@ -44,9 +34,20 @@ const winnersPerk = {
     <div class="finalists" data-reveal>
       <div class="finalists-head">
         <span class="section-tag">Premios · Recompensas</span>
-        <h3 class="finalists-title">Todos los seleccionados se llevan algo a casa.</h3>
+        <h3 class="finalists-title">El talento y esfuerzo serán recompensados.</h3>
       </div>
       <ul class="finalists-grid">
+        <li class="perk perk--winners">
+          <span class="perk-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M2 13h20"/></svg>
+          </span>
+          <div>
+            <span class="perk-badge mono">1er Lugar</span>
+            <span class="perk-title">{winnersPerk.title}</span>
+            <span class="perk-desc">{winnersPerk.desc}</span>
+          </div>
+        </li>
+
         {finalistsPerks.map((perk) => (
           <li class="perk">
             <span class="perk-icon" aria-hidden="true">
@@ -75,17 +76,6 @@ const winnersPerk = {
             </div>
           </li>
         ))}
-
-        <li class="perk perk--winners">
-          <span class="perk-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M2 13h20"/></svg>
-          </span>
-          <div>
-            <span class="perk-badge mono">Solo ganadores</span>
-            <span class="perk-title">{winnersPerk.title}</span>
-            <span class="perk-desc">{winnersPerk.desc}</span>
-          </div>
-        </li>
       </ul>
     </div>
   </div>
@@ -117,7 +107,7 @@ const winnersPerk = {
   .finalists-grid {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
   }
 
@@ -157,14 +147,14 @@ const winnersPerk = {
   }
 
   .perk-title {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: var(--text);
     letter-spacing: 0.01em;
   }
 
   .perk-desc {
-    font-size: 12.5px;
+    font-size: 13.5px;
     color: var(--text-dim);
     line-height: 1.5;
   }
@@ -177,6 +167,7 @@ const winnersPerk = {
     border-color: color-mix(in srgb, var(--primary) 55%, transparent);
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 22%, transparent),
                 0 20px 60px color-mix(in srgb, var(--primary) 18%, transparent);
+    margin-bottom: 8px;
   }
 
   .perk--winners:hover {
@@ -193,7 +184,7 @@ const winnersPerk = {
 
   .perk-badge {
     align-self: flex-start;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -202,14 +193,10 @@ const winnersPerk = {
     border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent);
     padding: 4px 10px;
     border-radius: 999px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 1080px) {
-    .finalists-grid { grid-template-columns: 1fr 1fr; }
-  }
-
   @media (max-width: 540px) {
     .finalists-grid { grid-template-columns: 1fr; }
   }

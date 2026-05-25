@@ -14,22 +14,13 @@ const orgs = [
     desc: 'Comunidad oficial de Google Developers en Arequipa, conectando a miles de desarrolladores con tecnología de Google.',
     cta: 'gdg.community.dev',
   },
-  {
-    role: 'Aliado Estratégico y Coorganizador',
-    name: 'ISUR',
-    logo: '/logos/isur%20icon.png',
-    desc: 'Instituto Superior Universitario de Arequipa: aliado estratégico y coorganizador, sede del auditorio y referente de innovación regional.',
-    cta: 'isur.edu.pe',
-  },
 ];
 
 const partners = [
   { name: 'IMB Institute', logo: '/logos/imb%20icon.jpg' },
   { name: 'GDG Arequipa', logo: '/logos/gdg%20icon.png' },
-  { name: 'ISUR', logo: '/logos/isur%20icon.png' },
   { name: 'IEEE', logo: '/logos/ieee%20icon.png', tba: true },
   { name: 'Marca Peruana S.A.C.', logo: '/logos/marca%20peruana%20icon.png' },
-  { name: 'Kaman Incubadora UCSP', logo: '/logos/kaman%20icon.jpg' },
 ];
 ---
 
@@ -238,7 +229,8 @@ const partners = [
   }
 
   .partner-frame {
-    width: 64px;
+    min-width: 64px;
+    max-width: 140px;
     height: 64px;
     display: grid;
     place-items: center;
