@@ -65,13 +65,6 @@ const ods = [
         </article>
       ))}
     </div>
-
-    <div class="ods-foot mono" data-reveal>
-      <span class="ods-foot-mark"></span>
-      <span>NACIONES UNIDAS · AGENDA 2030</span>
-      <span class="ods-foot-dot">·</span>
-      <span>17 OBJETIVOS · 169 METAS</span>
-    </div>
   </div>
 </section>
 
@@ -210,30 +203,6 @@ const ods = [
   .ods-card:hover .ods-corner {
     opacity: 0.45;
     transform: scale(1.15);
-  }
-
-  .ods-foot {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.18em;
-    padding: 18px 0 0;
-    border-top: 1px dashed var(--border);
-  }
-
-  .ods-foot-mark {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--grad);
-    box-shadow: 0 0 14px color-mix(in srgb, var(--primary) 70%, transparent);
-  }
-
-  .ods-foot-dot {
-    color: var(--primary);
   }
 
   @media (max-width: 1080px) {
