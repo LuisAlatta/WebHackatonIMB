@@ -19,15 +19,6 @@ const speakers = [
     logo: '/logos/gdg%20icon.png',
     status: 'partner',
   },
-  {
-    role: 'Workshops técnicos · Tarde',
-    name: 'Industria & Academia',
-    org: 'Convocatoria abierta',
-    bio: 'Estamos seleccionando workshops sobre RAG, agentes, fine-tuning y multimodalidad. ¿Quieres dar uno? Escríbenos.',
-    initials: '+',
-    logo: null,
-    status: 'open',
-  },
 ];
 
 const jury = [
@@ -115,9 +106,10 @@ const jury = [
 
   .speakers-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     margin-bottom: 40px;
+    max-width: 760px;
   }
 
   .speaker {
