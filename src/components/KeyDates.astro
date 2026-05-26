@@ -51,9 +51,9 @@ const milestones = [
       </p>
     </div>
 
-    <ol class="kd-track" data-reveal>
+    <ol class="kd-track">
       {milestones.map((m, i) => (
-        <li class={`kd-step status-${m.status}`} style={`transition-delay: ${i * 80}ms`}>
+        <li class={`kd-step status-${m.status}`} data-reveal style={`transition-delay: ${i * 90}ms`}>
           <span class="kd-num mono">{m.code}</span>
           <span class="kd-date mono">{m.date}</span>
           <span class="kd-title">{m.title}</span>
@@ -85,9 +85,37 @@ const milestones = [
     top: 44px;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border) 12%, var(--border) 88%, transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary) 12%, var(--primary-2) 50%, var(--accent) 88%, transparent);
+    background-size: 200% 100%;
+    opacity: 0.5;
     z-index: 0;
+    animation: kd-flow 6s linear infinite;
+  }
+
+  .kd-track::after {
+    content: '';
+    position: absolute;
+    top: 44px;
+    left: 0;
+    width: 70px;
+    height: 2px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    filter: blur(1px);
+    z-index: 0;
+    animation: kd-comet 5s linear infinite;
+  }
+
+  @keyframes kd-flow {
+    to { background-position: -200% 0; }
+  }
+
+  @keyframes kd-comet {
+    0% { left: -12%; opacity: 0; }
+    12% { opacity: 1; }
+    88% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
   }
 
   .kd-step {
@@ -101,12 +129,34 @@ const milestones = [
     gap: 6px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    transition: transform 0.4s ease, border-color 0.3s ease;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+  }
+
+  .kd-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: var(--grad);
+    border-radius: 0 0 3px 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   }
 
   .kd-step:hover {
-    transform: translateY(-4px);
-    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+    box-shadow: 0 22px 50px -26px color-mix(in srgb, var(--primary) 55%, transparent);
+  }
+
+  .kd-step:hover::before {
+    transform: scaleX(1);
+    opacity: 1;
   }
 
   .kd-num {
@@ -114,6 +164,11 @@ const milestones = [
     color: var(--primary);
     letter-spacing: 0.16em;
     font-weight: 700;
+    transition: text-shadow 0.3s ease;
+  }
+
+  .kd-step:hover .kd-num {
+    text-shadow: 0 0 16px color-mix(in srgb, var(--primary) 80%, transparent);
   }
 
   .kd-date {
@@ -156,13 +211,44 @@ const milestones = [
     border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
   }
 
+  .kd-step.status-event::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 32%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 68%);
+    transform: translateX(-130%);
+    pointer-events: none;
+    animation: kd-sweep 4.8s ease-in-out infinite;
+  }
+
+  @keyframes kd-sweep {
+    0% { transform: translateX(-130%); }
+    55%, 100% { transform: translateX(130%); }
+  }
+
+  .kd-step.status-event .kd-pill {
+    animation: kd-pill-glow 2.6s ease-in-out infinite;
+  }
+
+  @keyframes kd-pill-glow {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 35%, transparent); }
+    50% { box-shadow: 0 0 18px -2px color-mix(in srgb, var(--accent) 60%, transparent); }
+  }
+
   .kd-step.status-next {
     border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+    animation: kd-pulse-next 2.8s ease-in-out infinite;
+  }
+
+  @keyframes kd-pulse-next {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 28%, transparent); }
+    50% { box-shadow: 0 0 26px -4px color-mix(in srgb, var(--primary) 50%, transparent); }
   }
 
   @media (max-width: 1080px) {
     .kd-track { grid-template-columns: repeat(2, 1fr); }
-    .kd-track::before { display: none; }
+    .kd-track::before,
+    .kd-track::after { display: none; }
   }
 
   @media (max-width: 540px) {
