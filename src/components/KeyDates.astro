@@ -93,29 +93,8 @@ const milestones = [
     animation: kd-flow 6s linear infinite;
   }
 
-  .kd-track::after {
-    content: '';
-    position: absolute;
-    top: 44px;
-    left: 0;
-    width: 70px;
-    height: 2px;
-    transform: translateY(-50%);
-    background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    filter: blur(1px);
-    z-index: 0;
-    animation: kd-comet 5s linear infinite;
-  }
-
   @keyframes kd-flow {
     to { background-position: -200% 0; }
-  }
-
-  @keyframes kd-comet {
-    0% { left: -12%; opacity: 0; }
-    12% { opacity: 1; }
-    88% { opacity: 1; }
-    100% { left: 100%; opacity: 0; }
   }
 
   .kd-step {
@@ -247,8 +226,7 @@ const milestones = [
 
   @media (max-width: 1080px) {
     .kd-track { grid-template-columns: repeat(2, 1fr); }
-    .kd-track::before,
-    .kd-track::after { display: none; }
+    .kd-track::before { display: none; }
   }
 
   @media (max-width: 540px) {
