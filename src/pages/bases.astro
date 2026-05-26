@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Bases · NEXIA 2026"
+  description="Bases oficiales del hackathon NEXIA 2026 — Build with AI."
+>
+  <main class="bases">
+    <section class="bases-hero">
+      <a href="/" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al inicio
+      </a>
+
+      <span class="tag mono">// DOCUMENTO OFICIAL</span>
+      <h1 class="title">
+        Bases del <span class="gradient-text">Hackathon NEXIA 2026</span>
+      </h1>
+      <p class="subtitle">
+        Esta página contendrá las bases oficiales, reglamento, criterios de evaluación y
+        condiciones de participación del hackathon.
+      </p>
+
+      <div class="placeholder">
+        <span class="placeholder-tag mono">// PRÓXIMAMENTE</span>
+        <h2 class="placeholder-title">Contenido en preparación</h2>
+        <p class="placeholder-text">
+          Las bases oficiales se publicarán en este espacio en los próximos días.
+          Mientras tanto, puedes revisar la información del evento y postular desde la página principal.
+        </p>
+        <a href="/" class="btn-back">
+          Ir a la landing
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .bases {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 24px 80px;
+  }
+
+  .bases-hero {
+    max-width: 840px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+
+  .back-link:hover {
+    color: var(--primary);
+    transform: translateX(-3px);
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+
+  .gradient-text {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+
+  .placeholder {
+    border: 1px dashed color-mix(in srgb, var(--primary) 40%, var(--border));
+    border-radius: 24px;
+    padding: clamp(28px, 5vw, 56px);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--primary) 6%, var(--surface)), var(--surface));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    text-align: center;
+  }
+
+  .placeholder-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .placeholder-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .placeholder-text {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 28px;
+  }
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    background: var(--grad);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn-back:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--primary) 45%, transparent);
+  }
+</style>
