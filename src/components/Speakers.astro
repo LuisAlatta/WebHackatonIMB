@@ -76,8 +76,9 @@ const jury = [
         </p>
       </div>
       <ul class="jury-list">
-        {jury.map((j) => (
-          <li class="jury-item">
+        {jury.map((j, i) => (
+          <li class="jury-item" data-reveal style={`transition-delay: ${i * 90}ms`}>
+            <span class="jury-num mono">{String(i + 1).padStart(2, '0')}</span>
             {j.logo ? (
               <span class="jury-logo">
                 <img src={j.logo} alt={`Logo ${j.label}`} loading="lazy" />
@@ -261,23 +262,86 @@ const jury = [
   }
 
   .jury-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    padding: 16px 16px;
+    padding: 18px 16px;
     background: var(--surface-strong);
     border: 1px solid var(--border);
     border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease, background 0.3s ease;
+  }
+
+  .jury-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .jury-item:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+    box-shadow: 0 20px 45px -26px color-mix(in srgb, var(--primary) 55%, transparent);
+    background: color-mix(in srgb, var(--primary) 6%, var(--surface-strong));
+  }
+
+  .jury-item:hover::before {
+    transform: scaleX(1);
+  }
+
+  .jury-num {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+    color: color-mix(in srgb, var(--primary) 20%, transparent);
+    transition: color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .jury-item:hover .jury-num {
+    color: color-mix(in srgb, var(--primary) 55%, transparent);
+    transform: scale(1.12);
   }
 
   .jury-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: var(--primary);
     box-shadow: 0 0 12px var(--primary);
     flex-shrink: 0;
+    animation: jury-dot-pulse 2.4s ease-in-out infinite;
+  }
+
+  .jury-item:nth-child(2) .jury-dot { animation-delay: 0.3s; }
+  .jury-item:nth-child(3) .jury-dot { animation-delay: 0.6s; }
+  .jury-item:nth-child(4) .jury-dot { animation-delay: 0.9s; }
+  .jury-item:nth-child(5) .jury-dot { animation-delay: 1.2s; }
+
+  @keyframes jury-dot-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 45%, transparent), 0 0 12px var(--primary); }
+    50% { box-shadow: 0 0 0 7px transparent, 0 0 20px var(--primary); }
+  }
+
+  .jury-label {
+    transition: color 0.3s ease;
+  }
+
+  .jury-item:hover .jury-label {
+    color: var(--primary);
   }
 
   .jury-logo {
