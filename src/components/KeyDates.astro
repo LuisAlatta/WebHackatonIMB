@@ -1,0 +1,171 @@
+---
+const milestones = [
+  {
+    code: '01',
+    date: '22 · MAYO',
+    title: 'Apertura de inscripciones',
+    desc: 'Difusión oficial y postulaciones abiertas a través de la página web oficial.',
+    status: 'next',
+  },
+  {
+    code: '02',
+    date: '01 · JUNIO',
+    title: 'Convocatoria de voluntarios',
+    desc: 'Abrimos la convocatoria para el equipo voluntario de logística, mentoría y comunicaciones.',
+    status: 'upcoming',
+  },
+  {
+    code: '03',
+    date: '16 · JUNIO',
+    title: 'Cierre de inscripciones',
+    desc: 'Última oportunidad para postular como equipo (3 a 5 integrantes).',
+    status: 'upcoming',
+  },
+  {
+    code: '04',
+    date: '17 · JUNIO',
+    title: 'Publicación de seleccionados',
+    desc: 'Anuncio oficial de los 50 estudiantes seleccionados y los 10 equipos confirmados.',
+    status: 'upcoming',
+  },
+  {
+    code: '05',
+    date: '26 – 27 · JUNIO',
+    title: 'HACKATON NEXIA 2026',
+    desc: 'Evento presencial: dos días intensivos en Arequipa, Perú.',
+    status: 'event',
+  },
+];
+---
+
+<section id="key-dates" class="section key-dates">
+  <div class="container">
+    <div class="kd-head" data-reveal>
+      <span class="section-tag">Línea de tiempo · Fechas clave</span>
+      <h2 class="section-title">
+        Del primer post a los <span class="gradient-text">pitches finales</span>
+      </h2>
+      <p class="section-subtitle">
+        Cronograma oficial de inscripciones, voluntariado, selección y evento presencial.
+        Anótalas todas en el calendario.
+      </p>
+    </div>
+
+    <ol class="kd-track" data-reveal>
+      {milestones.map((m, i) => (
+        <li class={`kd-step status-${m.status}`} style={`transition-delay: ${i * 80}ms`}>
+          <span class="kd-num mono">{m.code}</span>
+          <span class="kd-date mono">{m.date}</span>
+          <span class="kd-title">{m.title}</span>
+          <span class="kd-desc">{m.desc}</span>
+          {m.status === 'event' && <span class="kd-pill mono">Evento principal</span>}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .kd-head {
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  .kd-track {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    position: relative;
+  }
+
+  .kd-track::before {
+    content: '';
+    position: absolute;
+    top: 44px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border) 12%, var(--border) 88%, transparent);
+    z-index: 0;
+  }
+
+  .kd-step {
+    position: relative;
+    padding: 22px 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.4s ease, border-color 0.3s ease;
+  }
+
+  .kd-step:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--border));
+  }
+
+  .kd-num {
+    font-size: 11px;
+    color: var(--primary);
+    letter-spacing: 0.16em;
+    font-weight: 700;
+  }
+
+  .kd-date {
+    font-size: 13px;
+    color: var(--text);
+    letter-spacing: 0.12em;
+    font-weight: 700;
+  }
+
+  .kd-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+    margin-top: 4px;
+  }
+
+  .kd-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .kd-pill {
+    align-self: flex-start;
+    margin-top: 8px;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .kd-step.status-event {
+    background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 14%, var(--surface)), var(--surface));
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  }
+
+  .kd-step.status-next {
+    border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+  }
+
+  @media (max-width: 1080px) {
+    .kd-track { grid-template-columns: repeat(2, 1fr); }
+    .kd-track::before { display: none; }
+  }
+
+  @media (max-width: 540px) {
+    .kd-track { grid-template-columns: 1fr; }
+  }
+</style>

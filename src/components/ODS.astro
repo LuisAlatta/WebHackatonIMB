@@ -1,0 +1,147 @@
+---
+const ods = [
+  {
+    num: 4,
+    name: 'Educación de Calidad',
+    color: '#C5192D',
+    desc: 'El hackathon impulsa el aprendizaje práctico, la formación en IA aplicada y el desarrollo de competencias del siglo XXI entre jóvenes universitarios. Los retos transforman la educación con aprendizaje personalizado, inclusión, prevención de deserción y evaluación inteligente.',
+  },
+  {
+    num: 9,
+    name: 'Industria, Innovación e Infraestructura',
+    color: '#FD6925',
+    desc: 'Fomenta innovación tecnológica aplicada a sectores de alto impacto social. Conexión con incubadoras nacionales e internacionales (Scale, JAKU) y acceso a capital semilla convierten al evento en un puente real entre la universidad y el ecosistema emprendedor.',
+  },
+  {
+    num: 10,
+    name: 'Reducción de las Desigualdades',
+    color: '#DD1367',
+    desc: 'Al llevar el hackathon a Arequipa y conectar a jóvenes locales con incubadoras internacionales, capital semilla y un puesto laboral garantizado para el equipo ganador, NEXIA reduce activamente la brecha de oportunidades con Lima.',
+  },
+];
+---
+
+<section id="ods" class="section ods">
+  <div class="container">
+    <div class="ods-head" data-reveal>
+      <span class="section-tag">Impacto · Agenda 2030</span>
+      <h2 class="section-title">
+        Alineados con los <span class="gradient-text">Objetivos de Desarrollo Sostenible</span>
+      </h2>
+      <p class="section-subtitle">
+        HACKATON NEXIA 2026 contribuye directamente a tres ODS centrales de la Agenda 2030
+        de las Naciones Unidas.
+      </p>
+    </div>
+
+    <div class="ods-grid">
+      {ods.map((o, i) => (
+        <article class="ods-card glass" data-reveal style={`transition-delay: ${i * 100}ms`}>
+          <div class="ods-num-wrap" style={`background: ${o.color}`}>
+            <span class="ods-num-label mono">ODS</span>
+            <span class="ods-num">{o.num}</span>
+          </div>
+          <h3 class="ods-name">{o.name}</h3>
+          <p class="ods-desc">{o.desc}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="ods-foot mono" data-reveal>
+      <span>NACIONES UNIDAS · AGENDA 2030</span>
+      <span class="ods-foot-dot">·</span>
+      <span>17 OBJETIVOS · 169 METAS</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ods-head {
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  .ods-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .ods-card {
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.4s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ods-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+  }
+
+  .ods-num-wrap {
+    width: 78px;
+    height: 78px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 12px;
+    color: #ffffff;
+    box-shadow: 0 8px 24px color-mix(in srgb, currentColor 25%, transparent);
+  }
+
+  .ods-num-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    opacity: 0.92;
+  }
+
+  .ods-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .ods-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+    margin: 4px 0 0;
+  }
+
+  .ods-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .ods-foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.18em;
+    padding: 16px 0 0;
+    border-top: 1px dashed var(--border);
+  }
+
+  .ods-foot-dot {
+    color: var(--primary);
+  }
+
+  @media (max-width: 1080px) {
+    .ods-grid { grid-template-columns: 1fr; }
+  }
+</style>

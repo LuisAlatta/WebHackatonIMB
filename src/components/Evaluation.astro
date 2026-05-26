@@ -1,0 +1,154 @@
+---
+const criteria = [
+  {
+    code: '01',
+    name: 'Innovación',
+    desc: 'Originalidad de la solución propuesta. ¿La idea aporta algo genuinamente nuevo al problema?',
+    weight: 25,
+  },
+  {
+    code: '02',
+    name: 'Uso de IA',
+    desc: 'Qué tan profunda y bien implementada está la IA dentro del prototipo.',
+    weight: 20,
+  },
+  {
+    code: '03',
+    name: 'Viabilidad',
+    desc: 'Factibilidad técnica y de negocio de la solución a corto y mediano plazo.',
+    weight: 20,
+  },
+  {
+    code: '04',
+    name: 'Modelo de negocio / sostenibilidad',
+    desc: 'Potencial de transformación real en educación y modelo sostenible en el tiempo.',
+    weight: 15,
+  },
+  {
+    code: '05',
+    name: 'Calidad del prototipo',
+    desc: 'Funcionalidad, presentación y nivel de desarrollo del MVP entregado.',
+    weight: 10,
+  },
+  {
+    code: '06',
+    name: 'Calidad del Pitch',
+    desc: 'Claridad, convicción y presentación ante el jurado en los 8 minutos finales.',
+    weight: 10,
+  },
+];
+---
+
+<section id="evaluation" class="section evaluation">
+  <div class="container">
+    <div class="ev-head" data-reveal>
+      <span class="section-tag">Criterios de evaluación</span>
+      <h2 class="section-title">
+        Cómo el jurado mide <span class="gradient-text">cada prototipo</span>
+      </h2>
+      <p class="section-subtitle">
+        Seis criterios públicos con pesos definidos. Los equipos saben exactamente
+        qué se evalúa antes de empezar a construir.
+      </p>
+    </div>
+
+    <div class="ev-grid">
+      {criteria.map((c, i) => (
+        <article class="ev-card glass" data-reveal style={`transition-delay: ${i * 70}ms`}>
+          <header class="ev-card-head">
+            <span class="ev-code mono">{c.code}</span>
+            <span class="ev-weight mono">{c.weight}%</span>
+          </header>
+          <h3 class="ev-name">{c.name}</h3>
+          <p class="ev-desc">{c.desc}</p>
+          <div class="ev-bar" aria-hidden="true">
+            <div class="ev-bar-fill" style={`width: ${c.weight * 4}%`}></div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ev-head {
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  .ev-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .ev-card {
+    padding: 26px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 0.4s ease, border-color 0.3s ease;
+  }
+
+  .ev-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+  }
+
+  .ev-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ev-code {
+    font-size: 11px;
+    color: var(--primary);
+    letter-spacing: 0.18em;
+    font-weight: 700;
+  }
+
+  .ev-weight {
+    font-size: 18px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .ev-name {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+    margin: 4px 0 2px;
+  }
+
+  .ev-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .ev-bar {
+    margin-top: 14px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--surface-strong);
+    overflow: hidden;
+  }
+
+  .ev-bar-fill {
+    height: 100%;
+    background: var(--grad);
+    border-radius: 999px;
+  }
+
+  @media (max-width: 1080px) {
+    .ev-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .ev-grid { grid-template-columns: 1fr; }
+  }
+</style>
