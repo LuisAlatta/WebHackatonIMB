@@ -3,20 +3,29 @@ const ods = [
   {
     num: 4,
     name: 'Educación de Calidad',
-    color: '#C5192D',
+    accent: 'var(--primary)',
+    accentSoft: 'rgba(0, 229, 255, 0.18)',
     desc: 'El hackathon impulsa el aprendizaje práctico, la formación en IA aplicada y el desarrollo de competencias del siglo XXI entre jóvenes universitarios. Los retos transforman la educación con aprendizaje personalizado, inclusión, prevención de deserción y evaluación inteligente.',
+    // Graduation cap
+    icon: `<path d="M2 9 L12 4 L22 9 L12 14 Z" /><path d="M6 11 V16 C6 17.1 8.7 18 12 18 C15.3 18 18 17.1 18 16 V11" /><path d="M22 9 V14" /><circle cx="22" cy="15.5" r="0.9" fill="currentColor" stroke="none"/>`,
   },
   {
     num: 9,
     name: 'Industria, Innovación e Infraestructura',
-    color: '#FD6925',
+    accent: 'var(--primary-2)',
+    accentSoft: 'rgba(124, 58, 237, 0.22)',
     desc: 'Fomenta innovación tecnológica aplicada a sectores de alto impacto social. Conexión con incubadoras nacionales e internacionales (Scale, JAKU) y acceso a capital semilla convierten al evento en un puente real entre la universidad y el ecosistema emprendedor.',
+    // Lightbulb + circuit
+    icon: `<path d="M9 18 H15" /><path d="M10 21 H14" /><path d="M12 3 A6 6 0 0 1 18 9 C18 11.5 16.5 13.2 15 14.5 V17 H9 V14.5 C7.5 13.2 6 11.5 6 9 A6 6 0 0 1 12 3 Z" /><path d="M12 8 V12" /><path d="M10 10 H14" />`,
   },
   {
     num: 10,
     name: 'Reducción de las Desigualdades',
-    color: '#DD1367',
+    accent: 'var(--accent)',
+    accentSoft: 'rgba(255, 43, 214, 0.18)',
     desc: 'Al llevar el hackathon a Arequipa y conectar a jóvenes locales con incubadoras internacionales, capital semilla y un puesto laboral garantizado para el equipo ganador, NEXIA reduce activamente la brecha de oportunidades con Lima.',
+    // Balance scale
+    icon: `<path d="M12 3 V21" /><path d="M5 21 H19" /><path d="M3 8 L7 8 L5 12 A2 2 0 0 0 9 12 L7 8" /><path d="M15 8 L19 8 L17 12 A2 2 0 0 0 21 12 L19 8" /><path d="M5 8 L19 8" />`,
   },
 ];
 ---
@@ -36,18 +45,29 @@ const ods = [
 
     <div class="ods-grid">
       {ods.map((o, i) => (
-        <article class="ods-card glass" data-reveal style={`transition-delay: ${i * 100}ms`}>
-          <div class="ods-num-wrap" style={`background: ${o.color}`}>
-            <span class="ods-num-label mono">ODS</span>
-            <span class="ods-num">{o.num}</span>
-          </div>
+        <article
+          class="ods-card glass"
+          data-reveal
+          style={`--ods-color: ${o.accent}; --ods-soft: ${o.accentSoft}; transition-delay: ${i * 100}ms`}
+        >
+          <header class="ods-card-head">
+            <span class="ods-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={o.icon} />
+            </span>
+            <div class="ods-num-block">
+              <span class="ods-num-label mono">OBJETIVO</span>
+              <span class="ods-num">{String(o.num).padStart(2, '0')}</span>
+            </div>
+          </header>
           <h3 class="ods-name">{o.name}</h3>
           <p class="ods-desc">{o.desc}</p>
+          <div class="ods-corner" aria-hidden="true"></div>
         </article>
       ))}
     </div>
 
     <div class="ods-foot mono" data-reveal>
+      <span class="ods-foot-mark"></span>
       <span>NACIONES UNIDAS · AGENDA 2030</span>
       <span class="ods-foot-dot">·</span>
       <span>17 OBJETIVOS · 169 METAS</span>
@@ -69,49 +89,97 @@ const ods = [
   }
 
   .ods-card {
-    padding: 28px 26px;
+    position: relative;
+    padding: 30px 26px 26px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    transition: transform 0.4s ease, border-color 0.3s ease;
-    position: relative;
+    gap: 14px;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
     overflow: hidden;
+    isolation: isolate;
+  }
+
+  .ods-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--ods-color);
+    opacity: 0.85;
+  }
+
+  .ods-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 100% 0%, var(--ods-soft), transparent 55%);
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+    z-index: -1;
   }
 
   .ods-card:hover {
-    transform: translateY(-6px);
-    border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+    transform: translateY(-8px);
+    border-color: color-mix(in srgb, var(--ods-color) 55%, var(--border));
+    box-shadow: 0 24px 60px -28px var(--ods-color);
   }
 
-  .ods-num-wrap {
-    width: 78px;
-    height: 78px;
+  .ods-card:hover::after {
+    opacity: 1;
+  }
+
+  .ods-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .ods-icon {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
     border-radius: 14px;
+    background: linear-gradient(135deg, var(--ods-soft), color-mix(in srgb, var(--ods-color) 5%, transparent));
+    border: 1px solid color-mix(in srgb, var(--ods-color) 35%, var(--border));
+    color: var(--ods-color);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ods-color) 15%, transparent);
+  }
+
+  .ods-card:hover .ods-icon {
+    transform: rotate(-6deg) scale(1.06);
+    box-shadow: 0 8px 24px -8px var(--ods-color), inset 0 0 0 1px color-mix(in srgb, var(--ods-color) 30%, transparent);
+  }
+
+  .ods-num-block {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 10px 12px;
-    color: #ffffff;
-    box-shadow: 0 8px 24px color-mix(in srgb, currentColor 25%, transparent);
+    align-items: flex-end;
+    gap: 2px;
   }
 
   .ods-num-label {
     font-size: 10px;
     letter-spacing: 0.18em;
-    font-weight: 700;
-    opacity: 0.92;
+    color: var(--text-dim);
+    font-weight: 600;
   }
 
   .ods-num {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 800;
     line-height: 1;
+    color: var(--ods-color);
+    letter-spacing: -0.02em;
   }
 
   .ods-name {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 700;
     color: var(--text);
     line-height: 1.25;
@@ -125,16 +193,43 @@ const ods = [
     flex: 1;
   }
 
+  .ods-corner {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 60px;
+    height: 60px;
+    background:
+      linear-gradient(135deg, transparent 50%, var(--ods-color) 50%);
+    opacity: 0.18;
+    border-bottom-right-radius: inherit;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+  }
+
+  .ods-card:hover .ods-corner {
+    opacity: 0.45;
+    transform: scale(1.15);
+  }
+
   .ods-foot {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
     font-size: 11px;
     color: var(--text-dim);
     letter-spacing: 0.18em;
-    padding: 16px 0 0;
+    padding: 18px 0 0;
     border-top: 1px dashed var(--border);
+  }
+
+  .ods-foot-mark {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grad);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--primary) 70%, transparent);
   }
 
   .ods-foot-dot {
