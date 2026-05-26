@@ -1,5 +1,10 @@
 ---
 const endpoint = import.meta.env.PUBLIC_SHEETS_ENDPOINT ?? '';
+
+// Inscripcion oficial via GDG Community (por ahora).
+// Cuando se reactive el formulario interno, cambiar a true.
+const SHOW_INTERNAL_FORM = false;
+const GDG_REGISTER_URL = 'https://gdg.community.dev/e/mw7feq/';
 ---
 
 <section id="register" class="section register">
@@ -24,6 +29,60 @@ const endpoint = import.meta.env.PUBLIC_SHEETS_ENDPOINT ?? '';
         </div>
 
         <div class="register-visual">
+          {!SHOW_INTERNAL_FORM && (
+            <div class="gdg-cta" data-reveal>
+              <div class="gdg-cta-glow" aria-hidden="true"></div>
+              <span class="gdg-cta-tag mono">// INSCRIPCIÓN OFICIAL</span>
+
+              <div class="gdg-cta-logo-wrap">
+                <span class="gdg-cta-logo">
+                  <img src="/logos/gdg%20icon.png" alt="GDG Arequipa" loading="lazy" />
+                </span>
+                <span class="gdg-cta-ring" aria-hidden="true"></span>
+              </div>
+
+              <h3 class="gdg-cta-title">
+                Postula en <span class="gradient-text">GDG&nbsp;Community</span>
+              </h3>
+              <p class="gdg-cta-lead">
+                La inscripción oficial a NEXIA 2026 se gestiona desde la plataforma de
+                <strong>GDG Arequipa</strong>. Crea tu cuenta gratis y completa el formulario en un par de minutos.
+              </p>
+
+              <ul class="gdg-cta-bullets">
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Postulación gratuita
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Equipos de 3 a 5 integrantes
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Confirmación inmediata por correo
+                </li>
+              </ul>
+
+              <a
+                href={GDG_REGISTER_URL}
+                class="gdg-cta-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="gdg-cta-btn-label">Postular ahora en GDG</span>
+                <span class="gdg-cta-btn-arrow" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </span>
+              </a>
+
+              <span class="gdg-cta-foot mono">
+                gdg.community.dev · se abre en una pestaña nueva
+              </span>
+            </div>
+          )}
+
+          {SHOW_INTERNAL_FORM && (
           <form
             id="apply-form"
             class="apply-form"
@@ -187,6 +246,7 @@ const endpoint = import.meta.env.PUBLIC_SHEETS_ENDPOINT ?? '';
             <p>Te escribiremos al correo y al WhatsApp con la confirmación y los siguientes pasos.</p>
             <button type="button" class="btn btn-ghost reset-btn">Enviar otra postulación</button>
           </div>
+          )}
         </div>
       </div>
     </div>
@@ -581,6 +641,228 @@ const endpoint = import.meta.env.PUBLIC_SHEETS_ENDPOINT ?? '';
     .field-row { grid-template-columns: 1fr; gap: 16px; }
     .apply-form { padding: 22px; }
     .block { padding: 16px; }
+  }
+
+  /* ============ CTA EXTERNA · GDG COMMUNITY ============ */
+  .gdg-cta {
+    position: relative;
+    padding: 44px 40px 36px;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 55%),
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 60%),
+      var(--surface);
+    border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--border));
+    overflow: hidden;
+    box-shadow: 0 30px 80px -40px var(--primary), 0 16px 60px -20px rgba(0, 0, 0, 0.5);
+    isolation: isolate;
+  }
+
+  .gdg-cta-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--primary), transparent 30%, transparent 70%, var(--accent));
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .gdg-cta-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--primary);
+    letter-spacing: 0.2em;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gdg-cta-logo-wrap {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 22px;
+    z-index: 1;
+  }
+
+  .gdg-cta-logo {
+    position: absolute;
+    inset: 8px;
+    border-radius: 20px;
+    background: #ffffff;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    box-shadow:
+      0 14px 40px -10px color-mix(in srgb, var(--primary) 55%, transparent),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    z-index: 1;
+  }
+
+  .gdg-cta-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .gdg-cta-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    border: 1.5px dashed color-mix(in srgb, var(--primary) 55%, transparent);
+    animation: ringSpin 12s linear infinite;
+  }
+
+  @keyframes ringSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  .gdg-cta-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+  }
+
+  .gdg-cta-lead {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin: 0 0 22px;
+    max-width: 460px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gdg-cta-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gdg-cta-bullets li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .gdg-cta-bullets svg {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+    border-radius: 50%;
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  }
+
+  .gdg-cta-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 18px 32px;
+    border-radius: 16px;
+    background: var(--grad);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-shadow:
+      0 20px 50px -15px color-mix(in srgb, var(--primary) 70%, transparent),
+      0 8px 24px -8px color-mix(in srgb, var(--accent) 60%, transparent),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .gdg-cta-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.32) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .gdg-cta-btn:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+      0 28px 60px -16px color-mix(in srgb, var(--primary) 80%, transparent),
+      0 14px 32px -10px color-mix(in srgb, var(--accent) 70%, transparent),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+  }
+
+  .gdg-cta-btn:hover::before {
+    transform: translateX(120%);
+  }
+
+  .gdg-cta-btn-label {
+    position: relative;
+    z-index: 1;
+  }
+
+  .gdg-cta-btn-arrow {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gdg-cta-btn:hover .gdg-cta-btn-arrow {
+    transform: translateX(4px) rotate(-12deg);
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  .gdg-cta-foot {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.14em;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 540px) {
+    .gdg-cta { padding: 32px 22px 26px; }
+    .gdg-cta-btn { padding: 16px 22px; font-size: 15px; }
   }
 </style>
 
