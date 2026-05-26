@@ -21,7 +21,7 @@
       </div>
     </a>
 
-    <nav class="nav-links" aria-label="Principal">
+    <nav id="nav-menu" class="nav-links" aria-label="Principal">
       <a href="/bases" target="_blank" rel="noopener">Bases</a>
       <a href="#key-dates">Fechas</a>
       <a href="#tracks">Retos</a>
@@ -31,12 +31,50 @@
       <a href="#faq">FAQ</a>
     </nav>
 
-    <a href="#register" class="btn btn-primary nav-cta">
-      Postular
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
+    <div class="nav-actions">
+      <a href="#register" class="btn btn-primary nav-cta">
+        Postular
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+
+      <button
+        type="button"
+        class="nav-burger"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<script>
+  const header = document.querySelector('.nav');
+  const burger = document.querySelector('.nav-burger') as HTMLButtonElement | null;
+  const menu = document.getElementById('nav-menu');
+
+  function closeMenu() {
+    header?.classList.remove('is-open');
+    burger?.setAttribute('aria-expanded', 'false');
+    burger?.setAttribute('aria-label', 'Abrir menú');
+  }
+
+  burger?.addEventListener('click', () => {
+    const open = header?.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
 
 <style>
   .nav {
@@ -136,13 +174,99 @@
     width: 100%;
   }
 
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
   .nav-cta {
     padding: 10px 20px;
     font-size: 14px;
   }
 
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    padding: 0 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .burger-line {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  }
+
+  .nav.is-open .nav-burger {
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+  }
+
+  .nav.is-open .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav.is-open .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav.is-open .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
   @media (max-width: 880px) {
-    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+
+    .nav-links {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      padding: 8px 24px 16px;
+      background: color-mix(in srgb, var(--bg-1) 98%, transparent);
+      backdrop-filter: blur(24px) saturate(150%);
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transform: translateY(-12px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav.is-open .nav-links {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .nav-links a {
+      padding: 14px 4px;
+      border-bottom: 1px solid var(--border);
+      font-size: 16px;
+    }
+
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-links a::after {
+      display: none;
+    }
   }
 
   @media (max-width: 480px) {
