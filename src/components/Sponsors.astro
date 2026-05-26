@@ -19,9 +19,9 @@ const orgs = [
 const partners = [
   { name: 'IMB Institute', logo: '/logos/imb%20icon.jpg' },
   { name: 'GDG Arequipa', logo: '/logos/gdg%20icon.png' },
-  { name: 'Jaku UNSA', logo: null, tba: true },
-  { name: 'La Salle', logo: null, tba: true },
-  { name: 'IEEE', logo: '/logos/ieee%20icon.png', tba: true },
+  { name: 'Jaku UNSA', logo: '/logos/logo%20jaku%20unsa.jpg' },
+  { name: 'La Salle', logo: '/logos/logo%20lasalle.png' },
+  { name: 'IEEE', logo: '/logos/ieee%20icon.png' },
   { name: 'Marca Peruana S.A.C.', logo: '/logos/marca%20peruana%20icon.png' },
 ];
 ---
@@ -64,14 +64,9 @@ const partners = [
         {partners.map((p) => (
           <div class="partner" title={p.name}>
             <div class="partner-frame">
-              {p.logo ? (
-                <img src={p.logo} alt={`Logo ${p.name}`} loading="lazy" />
-              ) : (
-                <span class="partner-initials mono">{p.name.split(' ').map((w) => w[0]).slice(0, 3).join('')}</span>
-              )}
+              <img src={p.logo} alt={`Logo ${p.name}`} loading="lazy" />
             </div>
             <span class="partner-name">{p.name}</span>
-            {p.tba && <span class="partner-tba mono">por confirmar</span>}
           </div>
         ))}
       </div>
