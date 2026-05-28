@@ -24,7 +24,7 @@ La hoja se descarga como `.xlsx` cuando quieras (Archivo → Descargar → Micro
 
 ```js
 var EQUIPOS_HEADERS = [
-  'Fecha y hora', 'ID equipo', 'Equipo', 'N° integrantes', 'Track elegido'
+  'Fecha y hora', 'ID equipo', 'Equipo', 'N° integrantes', 'Track elegido', 'Idea / tema del proyecto'
 ];
 
 var PERSONAS_HEADERS = [
@@ -43,7 +43,7 @@ function doPost(e) {
   var teamId = Utilities.getUuid().slice(0, 8);
 
   equipos.appendRow([
-    now, teamId, p.team || '', toInt_(p.size), p.track || ''
+    now, teamId, p.team || '', toInt_(p.size), p.track || '', p.project_idea || ''
   ]);
 
   personas.appendRow([
@@ -167,6 +167,7 @@ El form actual manda estos campos (URL-encoded en `FormData`):
 | `team`                 | Nombre del equipo            |
 | `size`                 | "3", "4" o "5"               |
 | `track`                | Track elegido (texto libre)  |
+| `project_idea`         | Idea / tema del proyecto (opcional) |
 | `leader_name`          | Líder · nombre completo      |
 | `leader_career`        | Líder · carrera              |
 | `leader_university`    | Líder · universidad          |

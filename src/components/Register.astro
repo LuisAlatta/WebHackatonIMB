@@ -1,9 +1,9 @@
 ---
 const endpoint = import.meta.env.PUBLIC_SHEETS_ENDPOINT ?? '';
 
-// Inscripcion oficial via GDG Community (por ahora).
-// Cuando se reactive el formulario interno, cambiar a true.
-const SHOW_INTERNAL_FORM = false;
+// Inscripcion oficial via formulario interno (envia a Google Sheets).
+// Para volver al CTA de GDG Community, cambiar a false.
+const SHOW_INTERNAL_FORM = true;
 const GDG_REGISTER_URL = 'https://gdg.community.dev/e/mw7feq/';
 ---
 
@@ -123,6 +123,11 @@ const GDG_REGISTER_URL = 'https://gdg.community.dev/e/mw7feq/';
                   <label for="track">Track elegido</label>
                   <input id="track" name="track" type="text" required maxlength="120" placeholder="Ej. AI Tutoring, Knowledge Engines..." />
                 </div>
+              </div>
+
+              <div class="field">
+                <label for="project-idea">Idea o tema del proyecto</label>
+                <textarea id="project-idea" name="project_idea" required maxlength="400" rows="3" placeholder="Cuéntanos en pocas líneas la idea que quieren construir. Puede ser preliminar; el reto oficial se revela al inicio del evento."></textarea>
               </div>
             </fieldset>
 
