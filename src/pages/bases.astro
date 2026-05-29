@@ -38,20 +38,19 @@ const elegibilidad = [
   'Residir preferentemente en Arequipa o en territorio peruano. Se aceptan participantes de otras regiones de forma presencial.',
   'Contar con conocimientos básicos en programación, diseño, gestión de proyectos tecnológicos o áreas afines.',
   'No se exige experiencia previa en IA: el evento está abierto a todos los niveles.',
-  'Registrarse individualmente o como parte de un equipo dentro del plazo establecido.',
+  'Registrarse como parte de un equipo dentro del plazo establecido.',
 ];
 
 const equipos = [
   'Equipos de mínimo 3 y máximo 5 integrantes.',
-  'Puedes inscribirte de forma individual y armar equipo durante la jornada de apertura.',
+  'Puedes inscribirte y conformar equipo a través de la página web de Nexia hasta el 19 de junio.',
   'Un mismo participante no puede integrar más de un equipo a la vez.',
-  'La organización puede ayudar a integrar a participantes individuales en equipos que necesiten completar su cupo.',
   'Cada equipo designa un líder o representante como interlocutor oficial con la organización.',
   'Los equipos multidisciplinarios (programación, diseño y negocio) son especialmente valorados.',
 ];
 
 const inscripcion = [
-  'La inscripción se realiza exclusivamente por el formulario oficial habilitado por la organización.',
+  'La inscripción se realiza exclusivamente por el formulario oficial habilitado por la organización (enlace disponible en redes sociales y plataformas del evento).',
   'El plazo se comunica por los canales oficiales de IMB Institute, GDG Arequipa, JAKU y la página de Nexia.',
   'La inscripción es gratuita para todos los participantes.',
   'La organización confirma la participación por correo electrónico o el canal oficial del evento.',
@@ -60,19 +59,31 @@ const inscripcion = [
 ];
 
 const ejes = [
-  'Educación inteligente',
-  'Inclusión educativa y acceso al conocimiento',
-  'Evaluación inteligente y feedback en tiempo real',
+  {
+    titulo: 'Inclusión Educativa Inteligente',
+    texto:
+      '¿Cómo garantizar que la tecnología impulse una educación más accesible e inclusiva? Se buscan herramientas de IA para estudiantes con discapacidades, barreras idiomáticas o dificultades cognitivas: subtítulos automáticos, adaptación de contenido en múltiples formatos, etc.',
+  },
+  {
+    titulo: 'Evaluación inteligente y Feedback en Tiempo Real',
+    texto:
+      '¿Cómo transformar la evaluación tradicional en un proceso continuo, automatizado y personalizado? Se buscan sistemas que analicen respuestas abiertas, generen retroalimentación inmediata y diseñen evaluaciones adaptativas que orienten el progreso del estudiante.',
+  },
+  {
+    titulo: 'Propuesta Libre (IA + Educación)',
+    texto:
+      'Soluciones innovadoras no contempladas en los retos anteriores, alineadas al objetivo general del evento: usar IA para transformar procesos educativos. La propuesta debe justificar su impacto y viabilidad.',
+  },
 ];
 
 const reglas = [
   'Respetar en todo momento las normas de convivencia, el respeto mutuo y el buen trato dentro del recinto.',
   'Prohibido el ingreso o consumo de bebidas alcohólicas, estupefacientes u otras sustancias similares.',
-  'El desarrollo comienza recién cuando se revela oficialmente el reto. No se permite trabajo previo sobre el reto.',
+  'El desarrollo comienza a partir de la apertura oficial del evento (10:00 am del 26 de junio). No se permite trabajo previo sobre el reto.',
   'Se permite usar librerías, APIs, frameworks, herramientas open source y servicios cloud, siempre que se declaren en la presentación final.',
   'No se admiten proyectos ya existentes como entrega: el desarrollo principal del prototipo se realiza durante el hackathon.',
   'La IA generativa (ChatGPT, Gemini, GitHub Copilot, etc.) se permite como apoyo, no como núcleo único del proyecto.',
-  'Cada equipo es responsable de sus propios equipos de cómputo, cargadores y materiales.',
+  'Cada equipo es responsable de sus propios equipos de cómputo, cargadores y materiales. La organización no se responsabiliza por pérdidas o daños de equipos personales.',
   'La organización puede descalificar a cualquier equipo que incumpla las bases o incurra en conductas inapropiadas.',
 ];
 
@@ -84,8 +95,8 @@ const cronograma = [
       ['8:30 – 9:00', 'Registro y acreditación de participantes', 'Obligatorio'],
       ['9:00 – 9:30', 'Inauguración y bienvenida oficial', 'Presentación de retos y reglas'],
       ['9:30 – 11:00', 'Charla inaugural: IA aplicada al emprendimiento', 'Ponente invitado'],
-      ['11:00 – 11:30', 'Presentación del reto', 'IMB Institute / MPA'],
-      ['11:30 – 12:00', 'Formación de equipos y distribución de espacios', 'Organización'],
+      ['11:00 – 11:30', 'Bienvenida oficial — Presentación del reto', 'IMB Institute / MPA'],
+      ['11:30 – 12:00', 'Distribución de espacios por equipos', 'Organización'],
       ['12:00 – 13:00', 'Sprint 1 — Desarrollo + mentoría', 'Equipos y mentores'],
       ['13:00 – 14:30', 'Refrigerio y networking', '—'],
       ['14:30 – 17:30', 'Sprint 2 — Desarrollo + mentoría', 'Equipos y mentores'],
@@ -169,7 +180,7 @@ const jurado = [
 const presentacion = [
   'Cada equipo tiene máximo 5 minutos de presentación + 3 minutos de preguntas y respuestas.',
   'La presentación incluye obligatoriamente: problema, solución propuesta, demo del prototipo funcional y uso de IA.',
-  'El orden de presentación se sortea el día 27 de junio durante la recepción matutina.',
+  'El orden de presentación se sortea el día 26 de junio durante la recepción matutina.',
   'Quien no se presente en su horario asignado puede ser descalificado, salvo fuerza mayor notificada a la organización.',
 ];
 
@@ -306,7 +317,7 @@ const icon: Record<string, string> = {
             NEXIA es un evento de innovación tecnológica de dos días que reúne a estudiantes,
             desarrolladores, diseñadores y emprendedores para crear soluciones basadas en
             Inteligencia Artificial frente a retos reales de la sociedad peruana. Los equipos
-            disponen de aproximadamente <strong>30 horas continuas</strong> para concebir, diseñar,
+            disponen de aproximadamente <strong>dos días consecutivos</strong> para concebir, diseñar,
             prototipar y presentar sus soluciones ante un jurado calificado, compitiendo por un
             fondo total de <strong>USD $2,100</strong>.
           </p>
@@ -380,8 +391,11 @@ const icon: Record<string, string> = {
           <div class="eje-grid">
             {ejes.map((e) => (
               <div class="eje">
-                <span class="eje-ico" set:html={icon.target} />
-                <span>{e}</span>
+                <div class="eje-head">
+                  <span class="eje-ico" set:html={icon.target} />
+                  <span class="eje-titulo">{e.titulo}</span>
+                </div>
+                <p class="eje-texto">{e.texto}</p>
               </div>
             ))}
           </div>
@@ -582,12 +596,22 @@ const icon: Record<string, string> = {
         </article>
 
         <article class="art">
-          <h3 class="art-title"><span class="art-num mono">Art. 19 y 20</span> Aceptación y vigencia</h3>
+          <h3 class="art-title"><span class="art-num mono">Art. 19</span> Aceptación de bases</h3>
           <p>
-            La inscripción implica la lectura, comprensión y aceptación total de estas bases; la
-            ignorancia de las mismas no exime de su cumplimiento. Las bases entran en vigencia desde
-            su publicación oficial y se mantienen hasta la conclusión del evento y la entrega de
-            premios. Cualquier modificación se comunica oficialmente a los inscritos.
+            La inscripción al Hackathon NEXIA Build with AI 2026 implica la lectura, comprensión y
+            aceptación total e incondicional de todas las disposiciones de este documento. La
+            ignorancia de estas bases no exime de su cumplimiento. Para cualquier consulta o
+            aclaración, los interesados pueden comunicarse a través de los canales oficiales del
+            evento publicados en las redes sociales de IMB Institute y GDG Arequipa.
+          </p>
+        </article>
+
+        <article class="art">
+          <h3 class="art-title"><span class="art-num mono">Art. 20</span> Vigencia</h3>
+          <p>
+            Las presentes bases entran en vigencia a partir de su publicación oficial y se mantienen
+            vigentes hasta la conclusión del evento y la entrega de premios. Cualquier modificación
+            será comunicada oficialmente a los participantes inscritos.
           </p>
         </article>
       </section>
@@ -946,24 +970,39 @@ const icon: Record<string, string> = {
   /* ---------- EJES ---------- */
   .eje-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 12px;
     margin: 18px 0;
   }
   .eje {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 12px;
-    padding: 16px;
+    padding: 18px;
     border-radius: 14px;
     background: color-mix(in srgb, var(--primary) 6%, transparent);
     border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+  }
+  .eje-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eje-titulo {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text);
+    line-height: 1.3;
+  }
+  .eje-texto {
+    font-size: 13px !important;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 0;
   }
   .eje-ico {
     width: 42px; height: 42px;
+    flex-shrink: 0;
     border-radius: 12px;
     display: grid; place-items: center;
     color: var(--primary);
