@@ -229,8 +229,9 @@ const icon: Record<string, string> = {
     <!-- TOP BAR FIJA -->
     <nav class="topbar" aria-label="Navegación de bases">
       <div class="topbar-inner">
-        <a href="/" class="topbar-home" aria-label="Volver al inicio" title="Volver al inicio">
-          <svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="M16 48 V16 L32 38 V16 H40 V48 L24 26 V48 Z"/></svg>
+        <a href="/" class="topbar-home" title="Volver a la página principal">
+          <span class="ico" set:html={icon.back} />
+          <span class="topbar-home-label">Regresar</span>
         </a>
         <div class="topbar-nav">
           {chapters.map((c) => (
@@ -648,22 +649,26 @@ const icon: Record<string, string> = {
 
   .topbar-home {
     flex-shrink: 0;
-    width: 42px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     height: 42px;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
+    padding: 0 16px 0 13px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
     color: var(--text);
     background: var(--surface);
     border: 1px solid var(--border);
     transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   }
-  .topbar-home svg { width: 22px; height: 22px; display: block; }
+  .topbar-home .ico svg { width: 18px; height: 18px; display: block; transition: transform 0.25s ease; }
   .topbar-home:hover {
     color: var(--primary);
     border-color: color-mix(in srgb, var(--primary) 45%, transparent);
     background: color-mix(in srgb, var(--primary) 8%, var(--surface));
   }
+  .topbar-home:hover .ico svg { transform: translateX(-3px); }
 
   .topbar-nav {
     flex: 1;
