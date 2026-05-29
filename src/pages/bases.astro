@@ -4,7 +4,6 @@ import Layout from '../layouts/Layout.astro';
 const keyFacts = [
   { icon: 'calendar', label: 'Fechas', value: '26 y 27 de junio de 2026' },
   { icon: 'pin', label: 'Sede', value: 'Incubadora JAKU — Arequipa' },
-  { icon: 'trophy', label: 'Premio total', value: 'USD $2,100' },
   { icon: 'users', label: 'Modalidad', value: 'Presencial · equipos de 3 a 5' },
 ];
 
@@ -56,7 +55,7 @@ const inscripcion = [
   'El plazo se comunica por los canales oficiales de IMB Institute, GDG Arequipa, JAKU y la página de Nexia.',
   'La inscripción es gratuita para todos los participantes.',
   'La organización confirma la participación por correo electrónico o el canal oficial del evento.',
-  'Cupo máximo: 120 personas. Las inscripciones cierran al alcanzar el límite o en la fecha establecida, lo que ocurra primero.',
+  'Cupo máximo: 100 personas. Las inscripciones cierran al alcanzar el límite o en la fecha establecida, lo que ocurra primero.',
   'La organización se reserva el derecho de rechazar inscripciones que no cumplan los requisitos.',
 ];
 
@@ -566,14 +565,20 @@ const icon: Record<string, string> = {
 
         <article class="art">
           <h3 class="art-title"><span class="art-num mono">Art. 18</span> Responsabilidad</h3>
-          <p>
-            La organización no se responsabiliza por accidentes, pérdidas, robos o daños a bienes
-            personales durante el evento. Por la permanencia nocturna (aprox. 30 horas continuas), los
-            menores de 18 años deben presentar una <strong>Declaración Jurada y Deslinde de
-            Responsabilidad</strong> firmada por su padre, madre o tutor; sin ese documento no podrán
-            acreditarse. La organización puede modificar el cronograma o las condiciones por fuerza
-            mayor, notificando con la mayor anticipación posible.
-          </p>
+          <ul class="check-list">
+            <li>
+              <span class="li-ico" set:html={icon.check} />
+              La organización no se responsabiliza por accidentes, pérdidas, robos o daños a bienes personales ocurridos durante el evento.
+            </li>
+            <li>
+              <span class="li-ico" set:html={icon.check} />
+              Los participantes menores de 18 años participan bajo la responsabilidad de sus padres o tutores legales. La participación de menores de edad requiere la presentación obligatoria de una <strong>Declaración Jurada y Deslinde de Responsabilidad</strong> firmada por el padre, madre o tutor legal, en la cual se acredite el conocimiento de la modalidad del evento, y el consentimiento informado sobre las condiciones de participación. Dicho formato será proporcionado por la organización durante el proceso de inscripción. Sin la presentación de este documento debidamente firmado, el menor no podrá ser acreditado para participar en el evento.
+            </li>
+            <li>
+              <span class="li-ico" set:html={icon.check} />
+              La organización se reserva el derecho de modificar el cronograma o las condiciones del evento por motivos de fuerza mayor, notificando a los participantes con la mayor anticipación posible.
+            </li>
+          </ul>
         </article>
 
         <article class="art">
