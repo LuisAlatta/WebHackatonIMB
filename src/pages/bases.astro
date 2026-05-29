@@ -230,7 +230,7 @@ const icon: Record<string, string> = {
     <nav class="topbar" aria-label="Navegación de bases">
       <div class="topbar-inner">
         <a href="/" class="topbar-home" aria-label="Volver al inicio" title="Volver al inicio">
-          <span class="ico" set:html={icon.home} />
+          <svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><path d="M16 48 V16 L32 38 V16 H40 V48 L24 26 V48 Z"/></svg>
         </a>
         <div class="topbar-nav">
           {chapters.map((c) => (
@@ -247,7 +247,6 @@ const icon: Record<string, string> = {
     <div class="container">
       <!-- HERO -->
       <header class="hero" data-reveal>
-        <span class="doc-tag mono">// DOCUMENTO OFICIAL · MAYO 2026</span>
         <h1 class="title">
           Bases y Reglamento del<br />
           <span class="gradient-text">Hackathon NEXIA 2026</span>
@@ -659,7 +658,7 @@ const icon: Record<string, string> = {
     border: 1px solid var(--border);
     transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   }
-  .topbar-home .ico svg { width: 20px; height: 20px; display: block; }
+  .topbar-home svg { width: 22px; height: 22px; display: block; }
   .topbar-home:hover {
     color: var(--primary);
     border-color: color-mix(in srgb, var(--primary) 45%, transparent);
@@ -706,18 +705,6 @@ const icon: Record<string, string> = {
   }
 
   /* ---------- HERO ---------- */
-  .doc-tag {
-    display: inline-block;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    color: var(--primary);
-    padding: 6px 14px;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--primary) 10%, transparent);
-    border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
-    margin-bottom: 22px;
-  }
-
   .title {
     font-size: clamp(2.2rem, 5.6vw, 4rem);
     font-weight: 800;
