@@ -368,16 +368,15 @@ const icon: Record<string, string> = {
               <li><span class="li-ico" set:html={icon.check} />{o}</li>
             ))}
           </ul>
-          <p class="art-lead">{elegibilidadIntro}</p>
-          <div class="ip-grid">
+          <p class="art-lead art-lead-spaced">{elegibilidadIntro}</p>
+          <ul class="check-list">
             {requisitosObligatorios.map((o) => (
-              <div class="ip-card">
-                <span class="ip-num mono">{o.n}</span>
-                <h4 class="ip-title">{o.titulo}</h4>
-                <p class="ip-text">{o.texto}</p>
-              </div>
+              <li>
+                <span class="li-ico" set:html={icon.check} />
+                <span><strong>{o.titulo}.</strong> {o.texto}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </article>
 
         <article class="art">
@@ -936,6 +935,8 @@ const icon: Record<string, string> = {
   }
   .art p strong { color: var(--text); font-weight: 600; }
   .art-lead { margin-bottom: 14px; }
+  .art-lead-spaced { margin-top: 18px; }
+  .check-list li strong { color: var(--text); font-weight: 600; }
 
   /* ---------- LISTS ---------- */
   .check-list,
