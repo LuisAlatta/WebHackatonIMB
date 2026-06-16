@@ -33,10 +33,18 @@ const objetivos = [
   'Fortalecer las alianzas entre academia, empresa privada y sector público en torno a la innovación digital.',
 ];
 
+const elegibilidad = [
+  'Ser mayor de 18 años al momento de la inscripción. Los menores deben presentar autorización escrita de su padre, madre o tutor legal.',
+  'Residir preferentemente en Arequipa o en territorio peruano. Se aceptan participantes de otras regiones de forma presencial.',
+  'Contar con conocimientos básicos en programación, diseño, gestión de proyectos tecnológicos o áreas afines.',
+  'No se exige experiencia previa en IA: el evento está abierto a todos los niveles.',
+  'Registrarse como parte de un equipo dentro del plazo establecido.',
+];
+
 const elegibilidadIntro =
   'Para ser admitido como participante en la presente Hackathon, el postulante deberá cumplir concurrentemente con las siguientes condiciones de idoneidad legal y académica:';
 
-const elegibilidad = [
+const requisitosObligatorios = [
   {
     n: '5.1',
     titulo: 'Idoneidad legal y conducta inmaculada',
@@ -354,10 +362,15 @@ const icon: Record<string, string> = {
         </div>
 
         <article class="art">
-          <h3 class="art-title"><span class="art-num mono">Art. 05</span> Requisitos obligatorios de elegibilidad</h3>
+          <h3 class="art-title"><span class="art-num mono">Art. 05</span> Elegibilidad</h3>
+          <ul class="check-list">
+            {elegibilidad.map((o) => (
+              <li><span class="li-ico" set:html={icon.check} />{o}</li>
+            ))}
+          </ul>
           <p class="art-lead">{elegibilidadIntro}</p>
           <div class="ip-grid">
-            {elegibilidad.map((o) => (
+            {requisitosObligatorios.map((o) => (
               <div class="ip-card">
                 <span class="ip-num mono">{o.n}</span>
                 <h4 class="ip-title">{o.titulo}</h4>
