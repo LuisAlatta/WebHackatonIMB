@@ -33,12 +33,22 @@ const objetivos = [
   'Fortalecer las alianzas entre academia, empresa privada y sector público en torno a la innovación digital.',
 ];
 
+const elegibilidadIntro =
+  'Para ser admitido como participante en la presente Hackathon, el postulante deberá cumplir concurrentemente con las siguientes condiciones de idoneidad legal y académica:';
+
 const elegibilidad = [
-  'Ser mayor de 18 años al momento de la inscripción. Los menores deben presentar autorización escrita de su padre, madre o tutor legal.',
-  'Residir preferentemente en Arequipa o en territorio peruano. Se aceptan participantes de otras regiones de forma presencial.',
-  'Contar con conocimientos básicos en programación, diseño, gestión de proyectos tecnológicos o áreas afines.',
-  'No se exige experiencia previa en IA: el evento está abierto a todos los niveles.',
-  'Registrarse como parte de un equipo dentro del plazo establecido.',
+  {
+    n: '5.1',
+    titulo: 'Idoneidad legal y conducta inmaculada',
+    texto:
+      'No registrar antecedentes penales, judiciales ni policiales vigentes en el territorio nacional o extranjero. Asimismo, el participante no deberá encontrarse bajo procesos penales en trámite con acusación fiscal formalizada, ni registrar sanciones firmes en el Registro Nacional de Sanciones contra Servidores Civiles (o el equivalente aplicable). El cumplimiento de este requisito se sustentará mediante la presentación de los certificados correspondientes y/o una Declaración Jurada adjunta a las presentes bases. La falsedad u omisión en esta declaración facultará al Comité Organizador a la exclusión inmediata del participante en cualquier etapa del evento, sin lugar a reclamo.',
+  },
+  {
+    n: '5.2',
+    titulo: 'Condición académica y temporalidad',
+    texto:
+      'Tener la condición de egresado de una carrera universitaria o técnica afín al objeto de la Hackathon. La fecha expedida en el documento oficial de egreso (Constancia de Egreso o diploma respectivo) emitida por la institución educativa no deberá exceder de un (1) año calendario de antigüedad computado de forma retroactiva a la fecha de cierre de las inscripciones del presente evento (fijada para el 19 de junio del 2026). Los participantes que hayan obtenido la condición de egresados con anterioridad a dicha fecha límite quedarán automáticamente inhabilitados.',
+  },
 ];
 
 const equipos = [
@@ -344,12 +354,17 @@ const icon: Record<string, string> = {
         </div>
 
         <article class="art">
-          <h3 class="art-title"><span class="art-num mono">Art. 05</span> Elegibilidad</h3>
-          <ul class="check-list">
+          <h3 class="art-title"><span class="art-num mono">Art. 05</span> Requisitos obligatorios de elegibilidad</h3>
+          <p class="art-lead">{elegibilidadIntro}</p>
+          <div class="ip-grid">
             {elegibilidad.map((o) => (
-              <li><span class="li-ico" set:html={icon.check} />{o}</li>
+              <div class="ip-card">
+                <span class="ip-num mono">{o.n}</span>
+                <h4 class="ip-title">{o.titulo}</h4>
+                <p class="ip-text">{o.texto}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </article>
 
         <article class="art">
